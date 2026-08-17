@@ -18,7 +18,7 @@ function getAIClient(): GoogleGenAI | null {
       apiKey: process.env.GEMINI_API_KEY,
       httpOptions: {
         headers: {
-          "User-Agent": "aistudio-build",
+          "User-Agent": "justdoors-server",
         },
       },
     });

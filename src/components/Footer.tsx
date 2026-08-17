@@ -235,6 +235,26 @@ export const Footer: React.FC<FooterProps> = ({
                   <span>build@buildershaus.com</span>
                 </a>
               </div>
+
+              {/* Lower Mainland install partner */}
+              <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1.5 text-[11px]">
+                <div className="font-mono uppercase text-[10px] text-neutral-500">Lower Mainland Install Partner</div>
+                <a
+                  href="https://rambowalls.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-neutral-200 hover:text-amber-400 font-semibold transition-colors"
+                >
+                  <span>Rambo Wall &amp; Ceiling — rambowalls.com</span>
+                  <ExternalLink className="w-3 h-3 text-amber-400/70" />
+                </a>
+                <a
+                  href="tel:7787732790"
+                  className="block font-mono text-neutral-400 hover:text-amber-400 transition-colors"
+                >
+                  778-773-2790
+                </a>
+              </div>
             </div>
           </div>
 

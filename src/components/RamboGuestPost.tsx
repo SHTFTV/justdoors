@@ -189,6 +189,15 @@ export const RamboGuestPost: React.FC<RamboGuestPostProps> = ({
                   <span>Get a Door + Install Quote</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
+                <a
+                  href="https://rambowalls.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-transparent hover:bg-neutral-900 text-neutral-300 hover:text-white border border-neutral-800 font-semibold text-xs flex items-center justify-center gap-2 transition-colors"
+                >
+                  <span>Visit rambowalls.com</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
+                </a>
               </div>
 
               <ul className="pt-1 space-y-1.5 text-xs text-neutral-400">

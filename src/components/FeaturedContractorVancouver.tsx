@@ -113,9 +113,15 @@ export const FeaturedContractorVancouver: React.FC<FeaturedContractorVancouverPr
             
             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight flex flex-wrap items-center gap-3">
               <span>Rambo Wall & Ceilings</span>
-              <span className="text-sm font-mono font-normal px-2.5 py-1 rounded-lg bg-neutral-800 text-amber-300 border border-neutral-700">
-                Mason (Lead Estimator)
-              </span>
+              <a
+                href="https://rambowalls.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-mono font-normal px-2.5 py-1 rounded-lg bg-neutral-800 text-amber-300 border border-neutral-700 hover:border-amber-500/50 hover:text-amber-200 inline-flex items-center gap-1 transition-colors"
+              >
+                <span>rambowalls.com</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
             </h3>
 
             <p className="text-sm text-neutral-300 max-w-3xl leading-relaxed">
