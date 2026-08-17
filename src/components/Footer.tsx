@@ -11,7 +11,11 @@ import {
   ShieldCheck, 
   ArrowUp,
   Download,
-  ExternalLink
+  ExternalLink,
+  Megaphone,
+  Network,
+  PenLine,
+  Star
 } from 'lucide-react';
 import { SectorType } from '../types';
 
@@ -19,12 +23,14 @@ interface FooterProps {
   onSelectSector: (sector: SectorType) => void;
   onOpenScheduleModal: () => void;
   onOpenQuoteModal: (sector?: 'high-rise' | 'commercial' | 'residential') => void;
+  onOpenMarketing?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onSelectSector,
   onOpenScheduleModal,
   onOpenQuoteModal,
+  onOpenMarketing,
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -40,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           
           {/* Brand & Manifesto Column (2 Cols on lg) */}
           <div className="lg:col-span-2 space-y-4">
@@ -230,6 +236,72 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </div>
             </div>
+          </div>
+
+          {/* B2B & Marketing Network Column */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-white font-bold flex items-center gap-1.5">
+              <Megaphone className="w-3.5 h-3.5 text-amber-400" />
+              <span>B2B & Marketing</span>
+            </h4>
+            <ul className="space-y-2 text-xs text-neutral-400">
+              <li>
+                <button
+                  onClick={onOpenMarketing}
+                  className="hover:text-amber-400 transition-colors text-left flex items-center gap-1.5 font-semibold text-amber-300"
+                >
+                  <Megaphone className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Builderhaus Marketing</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={onOpenMarketing}
+                  className="hover:text-amber-400 transition-colors text-left flex items-center gap-1.5"
+                >
+                  <Star className="w-3.5 h-3.5 text-neutral-400" />
+                  <span>Become a Featured Trade</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollTo('rambo-guest-post')}
+                  className="hover:text-amber-400 transition-colors text-left flex items-center gap-1.5"
+                >
+                  <PenLine className="w-3.5 h-3.5 text-neutral-400" />
+                  <span>Guest Posts & Editorial</span>
+                </button>
+              </li>
+              <li className="pt-1.5 mt-1.5 border-t border-neutral-800/80">
+                <span className="text-[10px] font-mono uppercase text-neutral-500 flex items-center gap-1.5">
+                  <Network className="w-3 h-3 text-amber-400/70" /> Trade Network
+                </span>
+              </li>
+              <li>
+                <a href="https://buildershaus.com/marketing" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">
+                  <span>buildershaus.com/marketing</span>
+                  <ExternalLink className="w-3 h-3 text-amber-400/70" />
+                </a>
+              </li>
+              <li>
+                <a href="https://steelstud.ca" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">
+                  <span>steelstud.ca</span>
+                  <ExternalLink className="w-3 h-3 text-amber-400/70" />
+                </a>
+              </li>
+              <li>
+                <a href="https://framers.io" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">
+                  <span>framers.io</span>
+                  <ExternalLink className="w-3 h-3 text-amber-400/70" />
+                </a>
+              </li>
+              <li>
+                <a href="https://steelstudcontractors.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1">
+                  <span>steelstudcontractors.com</span>
+                  <ExternalLink className="w-3 h-3 text-amber-400/70" />
+                </a>
+              </li>
+            </ul>
           </div>
 
         </div>

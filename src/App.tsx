@@ -13,6 +13,8 @@ import { FAQSection } from './components/FAQSection';
 import { MunicipalDirectorySection } from './components/MunicipalDirectorySection';
 import { CityLandingPageModal } from './components/CityLandingPageModal';
 import { WhyJustDoorsSection } from './components/WhyJustDoorsSection';
+import { RamboGuestPost } from './components/RamboGuestPost';
+import { MarketingModal } from './components/MarketingModal';
 import { QuoteModal } from './components/QuoteModal';
 import { GlobalSearchModal } from './components/GlobalSearchModal';
 import { Footer } from './components/Footer';
@@ -34,6 +36,7 @@ function AppContent() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isMarketingModalOpen, setIsMarketingModalOpen] = useState(false);
   const [quoteInitialSector, setQuoteInitialSector] = useState<'high-rise' | 'commercial' | 'residential'>('high-rise');
 
   // Municipal City Landing Pages State
@@ -156,7 +159,13 @@ function AppContent() {
           onOpenQuoteModal={handleOpenQuoteModal}
         />
 
-        {/* 11. Why Just Doors Manifesto ("No Windows Anywhere. Just Doors.") */}
+        {/* 11. Guest Post — Rambo Wall & Ceiling as Lower Mainland Door-Niche Installer */}
+        <RamboGuestPost
+          onOpenQuoteModal={handleOpenQuoteModal}
+          onOpenMarketing={() => setIsMarketingModalOpen(true)}
+        />
+
+        {/* 12. Why Just Doors Manifesto ("No Windows Anywhere. Just Doors.") */}
         <WhyJustDoorsSection 
           onOpenScheduleModal={handleOpenScheduleModal}
           onOpenQuoteModal={handleOpenQuoteModal}
@@ -169,6 +178,7 @@ function AppContent() {
         onSelectSector={setActiveSector}
         onOpenScheduleModal={handleOpenScheduleModal}
         onOpenQuoteModal={handleOpenQuoteModal}
+        onOpenMarketing={() => setIsMarketingModalOpen(true)}
       />
 
       {/* Quote Request Modal */}
@@ -211,6 +221,12 @@ function AppContent() {
       <GlobalSearchModal 
         isOpen={isSearchModalOpen}
         onClose={() => setIsSearchModalOpen(false)}
+      />
+
+      {/* Marketing Page — Builderhaus Network & B2B Guest Posts */}
+      <MarketingModal
+        isOpen={isMarketingModalOpen}
+        onClose={() => setIsMarketingModalOpen(false)}
       />
 
     </div>
