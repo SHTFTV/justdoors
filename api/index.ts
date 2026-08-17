@@ -1,5 +1,4 @@
 import express from "express";
-import { GoogleGenAI } from "@google/genai";
 
 // -----------------------------------------------------------------------------
 // Just Doors API (Vercel Serverless entrypoint)
@@ -13,20 +12,10 @@ import { GoogleGenAI } from "@google/genai";
 const app = express();
 app.use(express.json({ limit: "25mb" }));
 
-// Lazy initialization of Gemini client
-let aiClient: GoogleGenAI | null = null;
-function getAIClient(): GoogleGenAI | null {
-  if (!aiClient && process.env.GEMINI_API_KEY) {
-    aiClient = new GoogleGenAI({
-      apiKey: process.env.GEMINI_API_KEY,
-      httpOptions: {
-        headers: {
-          "User-Agent": "justdoors-server",
-        },
-      },
-    });
-  }
-  return aiClient;
+// Built-in, sector-aware door specification advisory (no external AI service).
+function buildDoorAdvisory(sector?: string): string {
+  const label = sector || "High-Rise & Commercial";
+  return `**Just Doors Specification Advisory:**\n\nFor **${label}** projects, standard best practices include:\n\n- **Unit Entry Doors**: 20-Minute UL 10C positive pressure fire-rated solid mineral/particleboard core with STC 32-38 acoustic drop seals, intumescent perimeter gasketing, and Grade 1 mortise locksets or smart RFID credentials.\n- **Stairwell & Exit Enclosures**: 90-Minute to 3-Hour 16-Gauge Galvannealed Hollow Metal Doors with fire-rated rim/mortise panic exit hardware (UL 305/NFPA 101) and heavy-duty ball-bearing spring hinges or hydraulic door closers.\n- **Common Areas & Amenity Lounges**: Heavy-duty architectural stile-and-rail or seamless flush wood veneer with concealed magnetic pivots and electronic access integration.\n\n*Our commercial estimating team can review your complete door schedule within 24 hours. Send your schedule to bids@justdoors.co or use our schedule upload tool below.*`;
 }
 
 // Health check
@@ -34,50 +23,18 @@ app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", service: "justdoors-api", timestamp: new Date().toISOString() });
 });
 
-// AI Door Specification & Code Compliance Endpoint
-app.post("/api/door-assistant", async (req, res) => {
+// Door Specification & Code Compliance Advisory Endpoint
+app.post("/api/door-assistant", (req, res) => {
   try {
-    const { prompt, sector, context } = req.body;
+    const { prompt, sector } = req.body;
 
     if (!prompt) {
       return res.status(400).json({ error: "Prompt is required" });
     }
 
-    const ai = getAIClient();
-    if (!ai) {
-      // Graceful fallback if GEMINI_API_KEY is not yet attached
-      return res.json({
-        text: `**Just Doors Specification Advisory:**\n\nFor **${sector || "High-Rise & Commercial"}** projects, standard best practices include:\n\n- **Unit Entry Doors**: 20-Minute UL 10C positive pressure fire-rated solid mineral/particleboard core with STC 32-38 acoustic drop seals, intumescent perimeter gasketing, and Grade 1 mortise locksets or smart RFID credentials.\n- **Stairwell & Exit Enclosures**: 90-Minute to 3-Hour 16-Gauge Galvannealed Hollow Metal Doors with fire-rated rim/mortise panic exit hardware (UL 305/NFPA 101) and heavy-duty ball-bearing spring hinges or hydraulic door closers.\n- **Common Areas & Amenity Lounges**: Heavy-duty architectural stile-and-rail or seamless flush wood veneer with concealed magnetic pivots and electronic access integration.\n\n*Our commercial estimating team can review your complete door schedule within 24 hours. Send your schedule to bids@justdoors.co or use our schedule upload tool below.*`,
-        isFallback: true,
-      });
-    }
-
-    const systemInstruction = `You are the Principal Door Systems Engineer and Architectural Door Hardware Consultant for "Just Doors" (justdoors.co) — the dedicated door specialist for High-Rise developments, Multi-Family residential, Commercial buildings, and High-End Residential.
-
-Note: Just Doors NEVER does windows. We specialize exclusively in doors, frames, fire-rated assemblies, acoustic seals, architectural hardware, and door schedules.
-
-When answering:
-1. Provide accurate, code-compliant architectural specifications referencing NFPA 80 (Fire Doors), NFPA 101 (Life Safety), IBC (International Building Code), UL 10C (Positive Pressure Fire Tests), ADA (Accessibility Guidelines, max 5 lbf opening force for interior doors), and STC (Sound Transmission Class) ratings.
-2. Structure recommendations into:
-   - Door Construction & Core Type (e.g., 20-min Mineral Core Wood Veneer, 16-Gauge Galvannealed Steel, Stile & Rail)
-   - Frame Type & Throat Size (e.g., Welded Hollow Metal, Knock-Down Drywall, Kerfed Wood Frame)
-   - Fire & Acoustic Rating Requirements
-   - Recommended Hardware Package (Hinges, Locks/Panic Devices, Closers, Gaskets, Automatic Drop Seals)
-   - Keying & Access Control considerations
-3. Keep tone authoritative, professional, concise, and focused on helping General Contractors, Developers, Architects, and Property Managers specify and budget the right door packages.`;
-
-    const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
-      contents: `Project Sector: ${sector || "Multi-Family & High-Rise"}\nContext: ${JSON.stringify(context || {})}\n\nClient/GC Question or Schedule text:\n${prompt}`,
-      config: {
-        systemInstruction,
-        temperature: 0.4,
-      },
-    });
-
     res.json({
-      text: response.text || "No response generated.",
-      isFallback: false,
+      text: buildDoorAdvisory(sector),
+      isFallback: true,
     });
   } catch (error: any) {
     console.error("Error in /api/door-assistant:", error);

@@ -16,9 +16,6 @@ npm install
 npm run dev      # http://localhost:3000
 ```
 
-Optionally set `GEMINI_API_KEY` (see `.env.example`) to enable the AI door assistant. Without it,
-the assistant returns a built-in advisory fallback and everything else works normally.
-
 ## Build
 
 ```bash
@@ -33,8 +30,8 @@ This repo is configured for Vercel:
 - `vite build` produces the static site in `dist/`.
 - `api/index.ts` runs the API as a serverless function; `vercel.json` rewrites `/api/*` to it.
 
-Import the repo in the Vercel dashboard (auto-detects Vite), or run `vercel` from the CLI. Add
-`GEMINI_API_KEY` under Project -> Settings -> Environment Variables to enable the AI assistant.
+Import the repo in the Vercel dashboard (auto-detects Vite), or run `vercel` from the CLI.
+No environment variables are required.
 
 ## API routes
 
