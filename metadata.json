@@ -1,0 +1,6 @@
+{
+  "name": "Just Doors",
+  "description": "Commercial, high-rise, multi-family, and residential door systems, hardware, and door schedule bidding.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
