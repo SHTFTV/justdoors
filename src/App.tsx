@@ -14,6 +14,8 @@ import { MunicipalDirectorySection } from './components/MunicipalDirectorySectio
 import { CityLandingPageModal } from './components/CityLandingPageModal';
 import { WhyJustDoorsSection } from './components/WhyJustDoorsSection';
 import { RamboGuestPost } from './components/RamboGuestPost';
+import { DoorWallScopeSection } from './components/DoorWallScopeSection';
+import { IndexingShareSection } from './components/IndexingShareSection';
 import { MarketingModal } from './components/MarketingModal';
 import { RamboContactWidget } from './components/RamboContactWidget';
 import { QuoteModal } from './components/QuoteModal';
@@ -166,11 +168,18 @@ function AppContent() {
           onOpenMarketing={() => setIsMarketingModalOpen(true)}
         />
 
+        {/* 11b. Doors + the wall & ceiling work behind them */}
+        <DoorWallScopeSection onOpenQuoteModal={handleOpenQuoteModal} />
+
+
         {/* 12. Why Just Doors Manifesto ("No Windows Anywhere. Just Doors.") */}
         <WhyJustDoorsSection 
           onOpenScheduleModal={handleOpenScheduleModal}
           onOpenQuoteModal={handleOpenQuoteModal}
         />
+
+        {/* AEO indexing + share (Preferred Source, Pin, WhatsApp) */}
+        <IndexingShareSection />
 
       </main>
 
