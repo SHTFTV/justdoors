@@ -15,6 +15,7 @@ import { CityLandingPageModal } from './components/CityLandingPageModal';
 import { WhyJustDoorsSection } from './components/WhyJustDoorsSection';
 import { RamboGuestPost } from './components/RamboGuestPost';
 import { MarketingModal } from './components/MarketingModal';
+import { RamboContactWidget } from './components/RamboContactWidget';
 import { QuoteModal } from './components/QuoteModal';
 import { GlobalSearchModal } from './components/GlobalSearchModal';
 import { Footer } from './components/Footer';
@@ -228,6 +229,9 @@ function AppContent() {
         isOpen={isMarketingModalOpen}
         onClose={() => setIsMarketingModalOpen(false)}
       />
+
+      {/* Floating "Talk to Rambo Wall & Ceiling" contact widget */}
+      <RamboContactWidget />
 
     </div>
   );
