@@ -6,8 +6,8 @@ interface EyeSpyRInfoModalProps {
   onClose: () => void;
 }
 
-// Update this once the live EyeSpyR verification URL is confirmed.
-const EYESPYR_VERIFY_URL = 'https://eyespyr.com';
+// EyeSpyR verification / pricing page.
+const EYESPYR_VERIFY_URL = 'https://eyespyr.com/pricing';
 
 export const EyeSpyRInfoModal: React.FC<EyeSpyRInfoModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
