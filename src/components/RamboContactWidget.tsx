@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, MessageSquare, Mail, X, ArrowUpRight, Hammer, BadgeCheck, Star } from 'lucide-react';
+import { Phone, MessageSquare, Mail, X, ArrowUpRight, Hammer, Search, Star } from 'lucide-react';
 
 const RAMBO_PHONE_DISPLAY = '778-773-2790';
 const RAMBO_PHONE_TEL = '7787732790';
@@ -75,19 +75,26 @@ export const RamboContactWidget: React.FC = () => {
             </a>
           </div>
 
-          {/* EyeSpyr verified endorsement (first-party, not public reviews) */}
-          <div className="mt-4 p-4 rounded-2xl bg-neutral-900/70 border border-amber-500/30">
+          {/* EyeSpyR verified endorsement (first-party verification — emerald brand) */}
+          <div className="mt-4 p-4 rounded-2xl bg-emerald-950/25 border border-emerald-500/40 shadow-[0_0_22px_-8px_rgba(16,185,129,0.5)]">
             <div className="flex items-center justify-between gap-2">
-              <div className="inline-flex items-center gap-1.5 text-amber-300 text-xs font-bold font-mono uppercase tracking-wide">
-                <BadgeCheck className="w-4 h-4" />
-                <span>EyeSpyr Verified</span>
+              <div className="flex items-center gap-2">
+                <span className="w-7 h-7 rounded-full border-2 border-emerald-400/70 flex items-center justify-center shrink-0">
+                  <Search className="w-3.5 h-3.5 text-emerald-400" />
+                </span>
+                <span className="font-display font-black text-lg leading-none tracking-tight">
+                  <span className="text-emerald-400">EyeSpy</span><span className="text-emerald-300">R</span>
+                </span>
               </div>
               <span className="text-lg font-black text-white leading-none">5.0</span>
             </div>
-            <div className="flex items-center gap-0.5 mt-2">
+            <div className="flex items-center gap-0.5 mt-2.5">
               {[0, 1, 2, 3, 4].map((i) => (
-                <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                <Star key={i} className="w-4 h-4 text-emerald-400 fill-emerald-400" />
               ))}
+              <span className="ml-1.5 text-[10px] font-mono uppercase tracking-wider text-emerald-300/80">
+                Verified
+              </span>
             </div>
             <p className="text-[11px] text-neutral-400 leading-relaxed mt-2">
               Vetted Lower Mainland install partner — Just Doors sends Rambo our door work and stands behind their quality.
