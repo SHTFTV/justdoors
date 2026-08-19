@@ -127,12 +127,7 @@ export const HardwareManufacturersMarquee: React.FC<HardwareManufacturersMarquee
                 title={`${logo.name} - Click for hardware specifications`}
                 onClick={() => handleLogoClick(logo.id)}
               >
-                <img 
-                  src={logo.url} 
-                  alt={logo.alt} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer"
-                />
+                <span className="logo-wordmark" aria-label={logo.alt}>{logo.name}</span>
               </div>
             ))}
 
@@ -144,12 +139,7 @@ export const HardwareManufacturersMarquee: React.FC<HardwareManufacturersMarquee
                 title={`${logo.name} - Click for hardware specifications`}
                 onClick={() => handleLogoClick(logo.id)}
               >
-                <img 
-                  src={logo.url} 
-                  alt={logo.alt} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer"
-                />
+                <span className="logo-wordmark" aria-label={logo.alt}>{logo.name}</span>
               </div>
             ))}
           </div>
@@ -253,6 +243,7 @@ export const HardwareManufacturersMarquee: React.FC<HardwareManufacturersMarquee
                         <div className="h-9 w-24 bg-neutral-900 rounded-lg p-1 border border-neutral-800 flex items-center justify-center shrink-0">
                           <img 
                             src={mfg.logoUrl} 
+                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                             alt={mfg.altText} 
                             className="max-h-6 max-w-[80px] object-contain filter brightness-125"
                             referrerPolicy="no-referrer"
@@ -353,6 +344,7 @@ export const HardwareManufacturersMarquee: React.FC<HardwareManufacturersMarquee
               <div className="h-12 w-28 bg-neutral-950 rounded-xl p-2 border border-neutral-800 flex items-center justify-center shrink-0">
                 <img 
                   src={selectedManufacturer.logoUrl} 
+                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                   alt={selectedManufacturer.altText} 
                   className="max-h-8 max-w-[95px] object-contain filter brightness-125"
                   referrerPolicy="no-referrer"

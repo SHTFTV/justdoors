@@ -451,6 +451,7 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
                           <div className="h-10 w-24 bg-neutral-950 rounded-lg p-1.5 border border-neutral-800 flex items-center justify-center shrink-0">
                             <img 
                               src={mfg.logoUrl} 
+                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                               alt={mfg.altText} 
                               className="max-h-6 max-w-[80px] object-contain filter brightness-125"
                               referrerPolicy="no-referrer"
@@ -520,6 +521,7 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
                           <div className="h-10 w-24 bg-neutral-950 rounded-lg p-1.5 border border-neutral-800 flex items-center justify-center shrink-0">
                             <img 
                               src={mfg.logoUrl} 
+                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                               alt={mfg.altText} 
                               className="max-h-6 max-w-[80px] object-contain filter brightness-125"
                               referrerPolicy="no-referrer"
