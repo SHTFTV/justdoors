@@ -1,0 +1,15 @@
+{
+  "name": "Just Doors",
+  "short_name": "Just Doors",
+  "description": "Commercial, high-rise, multi-family, and residential door systems, fire-rated assemblies, hardware, and door schedules across the Lower Mainland of British Columbia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}

@@ -78,6 +78,15 @@ export const ProjectMapComponent: React.FC<ProjectMapComponentProps> = ({
           glow: 'shadow-emerald-500/30',
           badge: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
         };
+      default:
+        return {
+          bg: 'bg-amber-500',
+          text: 'text-amber-400',
+          border: 'border-amber-500',
+          ring: 'ring-amber-500/40',
+          glow: 'shadow-amber-500/30',
+          badge: 'bg-amber-500/10 text-amber-300 border-amber-500/30',
+        };
     }
   };
 
