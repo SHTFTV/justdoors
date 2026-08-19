@@ -21,6 +21,10 @@ CIVIC = {
     "auth":"City of Surrey — Building Division",
     "note":"Surrey follows the BC Building Code, administered by the City of Surrey Building Division, with fire review by Surrey Fire Service.",
     "permit":"https://www.surrey.ca/services-payments/building-permits"},
+  "burnaby": {"hall":"4949 Canada Way, Burnaby, BC V5G 1M2",
+    "auth":"City of Burnaby — Building Department",
+    "note":"Burnaby follows the BC Building Code, administered by the City of Burnaby Building Department, with fire review by Burnaby Fire Department.",
+    "permit":"https://www.burnaby.ca/services-and-payments/permits-and-applications"},
 }
 
 def city_from_h1(h1):

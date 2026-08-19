@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-6">
           
           {/* Brand & Manifesto Column (2 Cols on lg) */}
           <div className="lg:col-span-2 space-y-4">
@@ -99,6 +99,23 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </div>
             </div>
+          </div>
+
+          {/* Sectors Column */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-white font-bold">
+              Service Areas
+            </h4>
+            <ul className="space-y-2 text-xs">
+              <li><a href="/vancouver" className="hover:text-amber-400 transition-colors text-neutral-300">Vancouver doors</a></li>
+              <li><a href="/surrey" className="hover:text-amber-400 transition-colors text-neutral-300">Surrey doors</a></li>
+              <li><a href="/burnaby" className="hover:text-amber-400 transition-colors text-neutral-300">Burnaby doors</a></li>
+              <li>
+                <button onClick={() => scrollTo('municipal-directory')} className="hover:text-amber-400 transition-colors text-left text-neutral-400">
+                  All Lower Mainland cities →
+                </button>
+              </li>
+            </ul>
           </div>
 
           {/* Sectors Column */}
