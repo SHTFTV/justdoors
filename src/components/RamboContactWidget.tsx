@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, MessageSquare, Mail, X, ArrowUpRight, Hammer, Search, Star } from 'lucide-react';
+import { EyeSpyRInfoModal } from './EyeSpyRInfoModal';
 
 const RAMBO_PHONE_DISPLAY = '778-773-2790';
 const RAMBO_PHONE_TEL = '7787732790';
@@ -9,6 +10,7 @@ const RAMBO_EMAIL = 'rambowallceiling@gmail.com';
 
 export const RamboContactWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showEyeSpyRInfo, setShowEyeSpyRInfo] = useState(false);
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3 no-print">
@@ -75,8 +77,11 @@ export const RamboContactWidget: React.FC = () => {
             </a>
           </div>
 
-          {/* EyeSpyR verified endorsement (first-party verification — emerald brand) */}
-          <div className="mt-4 p-4 rounded-2xl bg-emerald-950/25 border border-emerald-500/40 shadow-[0_0_22px_-8px_rgba(16,185,129,0.5)]">
+          {/* EyeSpyR verified endorsement — tap to learn what EyeSpyR is */}
+          <button
+            onClick={() => setShowEyeSpyRInfo(true)}
+            className="mt-4 w-full text-left p-4 rounded-2xl bg-emerald-950/25 border border-emerald-500/40 shadow-[0_0_22px_-8px_rgba(16,185,129,0.5)] hover:border-emerald-400/70 transition-colors group"
+          >
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className="w-7 h-7 rounded-full border-2 border-emerald-400/70 flex items-center justify-center shrink-0">
@@ -99,7 +104,10 @@ export const RamboContactWidget: React.FC = () => {
             <p className="text-[11px] text-neutral-400 leading-relaxed mt-2">
               Vetted Lower Mainland install partner — Just Doors sends Rambo our door work and stands behind their quality.
             </p>
-          </div>
+            <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider text-emerald-400/70 group-hover:text-emerald-300">
+              What is this? · Tap
+            </span>
+          </button>
 
           {/* Footer link */}
           <a
@@ -128,6 +136,9 @@ export const RamboContactWidget: React.FC = () => {
         {isOpen ? <X className="w-5 h-5" /> : <Hammer className="w-5 h-5" />}
         <span>{isOpen ? 'Close' : 'Talk to Rambo'}</span>
       </button>
+
+      {/* EyeSpyR trust-layer explainer */}
+      <EyeSpyRInfoModal isOpen={showEyeSpyRInfo} onClose={() => setShowEyeSpyRInfo(false)} />
     </div>
   );
 };
