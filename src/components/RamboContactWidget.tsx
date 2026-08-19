@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, MessageSquare, Mail, X, ArrowUpRight, Hammer } from 'lucide-react';
+import { Phone, MessageSquare, Mail, X, ArrowUpRight, Hammer, BadgeCheck, Star } from 'lucide-react';
 
 const RAMBO_PHONE_DISPLAY = '778-773-2790';
 const RAMBO_PHONE_TEL = '7787732790';
@@ -73,6 +73,25 @@ export const RamboContactWidget: React.FC = () => {
                 <div className="text-sm font-bold truncate">{RAMBO_EMAIL}</div>
               </div>
             </a>
+          </div>
+
+          {/* EyeSpyr verified endorsement (first-party, not public reviews) */}
+          <div className="mt-4 p-4 rounded-2xl bg-neutral-900/70 border border-amber-500/30">
+            <div className="flex items-center justify-between gap-2">
+              <div className="inline-flex items-center gap-1.5 text-amber-300 text-xs font-bold font-mono uppercase tracking-wide">
+                <BadgeCheck className="w-4 h-4" />
+                <span>EyeSpyr Verified</span>
+              </div>
+              <span className="text-lg font-black text-white leading-none">5.0</span>
+            </div>
+            <div className="flex items-center gap-0.5 mt-2">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+              ))}
+            </div>
+            <p className="text-[11px] text-neutral-400 leading-relaxed mt-2">
+              Vetted Lower Mainland install partner — Just Doors sends Rambo our door work and stands behind their quality.
+            </p>
           </div>
 
           {/* Footer link */}
