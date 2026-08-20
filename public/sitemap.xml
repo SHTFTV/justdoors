@@ -4,4 +4,7 @@
   <url><loc>https://justdoors.co/vancouver</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://justdoors.co/surrey</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://justdoors.co/burnaby</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://justdoors.co/richmond</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://justdoors.co/coquitlam</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://justdoors.co/langley</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

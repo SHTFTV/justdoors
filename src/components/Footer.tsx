@@ -110,6 +110,9 @@ export const Footer: React.FC<FooterProps> = ({
               <li><a href="/vancouver" className="hover:text-amber-400 transition-colors text-neutral-300">Vancouver doors</a></li>
               <li><a href="/surrey" className="hover:text-amber-400 transition-colors text-neutral-300">Surrey doors</a></li>
               <li><a href="/burnaby" className="hover:text-amber-400 transition-colors text-neutral-300">Burnaby doors</a></li>
+              <li><a href="/richmond" className="hover:text-amber-400 transition-colors text-neutral-300">Richmond doors</a></li>
+              <li><a href="/coquitlam" className="hover:text-amber-400 transition-colors text-neutral-300">Coquitlam doors</a></li>
+              <li><a href="/langley" className="hover:text-amber-400 transition-colors text-neutral-300">Langley doors</a></li>
               <li>
                 <button onClick={() => scrollTo('municipal-directory')} className="hover:text-amber-400 transition-colors text-left text-neutral-400">
                   All Lower Mainland cities →

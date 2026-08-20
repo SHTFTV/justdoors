@@ -25,6 +25,18 @@ CIVIC = {
     "auth":"City of Burnaby — Building Department",
     "note":"Burnaby follows the BC Building Code, administered by the City of Burnaby Building Department, with fire review by Burnaby Fire Department.",
     "permit":"https://www.burnaby.ca/services-and-payments/permits-and-applications"},
+  "richmond": {"hall":"6911 No. 3 Road, Richmond, BC V6Y 2C1",
+    "auth":"City of Richmond — Building Approvals",
+    "note":"Richmond follows the BC Building Code, administered by the City of Richmond Building Approvals department, with fire review by Richmond Fire-Rescue.",
+    "permit":"https://www.richmond.ca/business-development/permits/building.htm"},
+  "coquitlam": {"hall":"3000 Guildford Way, Coquitlam, BC V3B 7N2",
+    "auth":"City of Coquitlam — Building Permits",
+    "note":"Coquitlam follows the BC Building Code, administered by the City of Coquitlam Building Permits department, with fire review by Coquitlam Fire/Rescue.",
+    "permit":"https://www.coquitlam.ca/442/Building-Permits"},
+  "langley": {"hall":"20338 65 Ave, Langley, BC V2Y 3J1",
+    "auth":"Township & City of Langley — Building Departments",
+    "note":"Langley (City and Township) follows the BC Building Code, administered by each municipality's building department, with their own fire services.",
+    "permit":"https://www.tol.ca/en/business-and-development/building-permits.aspx"},
 }
 
 def city_from_h1(h1):
