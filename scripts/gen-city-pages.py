@@ -1,129 +1,28 @@
 #!/usr/bin/env python3
-"""Generate static, SEO-complete city landing pages from content/cities/*.md into public/<slug>.html.
-Includes: city-hall map + permit links, and a static Rambo Wall & Ceiling contact floater with EyeSpyR badge."""
+"""Generate factual static city landing pages from content/cities/*.md into public/<slug>.html."""
 import os, re, glob, html, json
 from urllib.parse import quote
 import markdown
-
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "content", "cities")
-OUT = os.path.join(ROOT, "public")
-SITE = "https://justdoors.co"
-GSV = '<meta name="google-site-verification" content="JOBgjbITYGnOGVozuyqPje7bcu4Ij1GjmmoNSBmDPyw" />'
-
-# Per-city civic data (city hall + building authority + permits link)
-CIVIC = {
-  "vancouver": {"hall":"515 W 10th Ave, Vancouver, BC V5Z 4A8",
-    "auth":"City of Vancouver — Development, Buildings & Licensing",
-    "note":"Vancouver uses its own Vancouver Building By-law (VBBL), administered by Development, Buildings & Licensing, with fire review by Vancouver Fire & Rescue Services.",
-    "permit":"https://vancouver.ca/home-property-development/building-permits.aspx"},
-  "surrey": {"hall":"13450 104 Ave, Surrey, BC V3T 1V8",
-    "auth":"City of Surrey — Building Division",
-    "note":"Surrey follows the BC Building Code, administered by the City of Surrey Building Division, with fire review by Surrey Fire Service.",
-    "permit":"https://www.surrey.ca/services-payments/building-permits"},
-  "burnaby": {"hall":"4949 Canada Way, Burnaby, BC V5G 1M2",
-    "auth":"City of Burnaby — Building Department",
-    "note":"Burnaby follows the BC Building Code, administered by the City of Burnaby Building Department, with fire review by Burnaby Fire Department.",
-    "permit":"https://www.burnaby.ca/services-and-payments/permits-and-applications"},
-  "richmond": {"hall":"6911 No. 3 Road, Richmond, BC V6Y 2C1",
-    "auth":"City of Richmond — Building Approvals",
-    "note":"Richmond follows the BC Building Code, administered by the City of Richmond Building Approvals department, with fire review by Richmond Fire-Rescue.",
-    "permit":"https://www.richmond.ca/business-development/permits/building.htm"},
-  "coquitlam": {"hall":"3000 Guildford Way, Coquitlam, BC V3B 7N2",
-    "auth":"City of Coquitlam — Building Permits",
-    "note":"Coquitlam follows the BC Building Code, administered by the City of Coquitlam Building Permits department, with fire review by Coquitlam Fire/Rescue.",
-    "permit":"https://www.coquitlam.ca/442/Building-Permits"},
-  "langley": {"hall":"20338 65 Ave, Langley, BC V2Y 3J1",
-    "auth":"Township & City of Langley — Building Departments",
-    "note":"Langley (City and Township) follows the BC Building Code, administered by each municipality's building department, with their own fire services.",
-    "permit":"https://www.tol.ca/en/business-and-development/building-permits.aspx"},
-}
-
+ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__))); SRC=os.path.join(ROOT,'content','cities'); OUT=os.path.join(ROOT,'public'); SITE='https://justdoors.co'; GSV='<meta name="google-site-verification" content="JOBgjbITYGnOGVozuyqPje7bcu4Ij1GjmmoNSBmDPyw" />'
+CIVIC={
+'vancouver':{'hall':'515 W 10th Ave, Vancouver, BC V5Z 4A8','auth':'City of Vancouver — Development, Buildings & Licensing','note':'Confirm current Vancouver Building By-law, permit and fire/life-safety requirements for the specific project.','permit':'https://vancouver.ca/home-property-development/building-permits.aspx'},
+'surrey':{'hall':'13450 104 Ave, Surrey, BC V3T 1V8','auth':'City of Surrey — Building Division','note':'Confirm current municipal and BC Building Code requirements for the specific project.','permit':'https://www.surrey.ca/services-payments/building-permits'},
+'burnaby':{'hall':'4949 Canada Way, Burnaby, BC V5G 1M2','auth':'City of Burnaby — Building Department','note':'Confirm current municipal and BC Building Code requirements for the specific project.','permit':'https://www.burnaby.ca/services-and-payments/permits-and-applications'},
+'richmond':{'hall':'6911 No. 3 Road, Richmond, BC V6Y 2C1','auth':'City of Richmond — Building Approvals','note':'Confirm current municipal and BC Building Code requirements for the specific project.','permit':'https://www.richmond.ca/business-development/permits/building.htm'},
+'coquitlam':{'hall':'3000 Guildford Way, Coquitlam, BC V3B 7N2','auth':'City of Coquitlam — Building Permits','note':'Confirm current municipal and BC Building Code requirements for the specific project.','permit':'https://www.coquitlam.ca/442/Building-Permits'},
+'langley':{'hall':'20338 65 Ave, Langley, BC V2Y 3J1','auth':'Langley building departments','note':'Confirm whether the project is in the City or Township and use that authority’s current requirements.','permit':'https://www.tol.ca/en/business-and-development/building-permits.aspx'}}
+def parse(path):
+ raw=open(path,encoding='utf-8').read(); h1=re.search(r'^#\s+(.+)$',raw,re.M).group(1).strip(); intro=re.search(r'\*\*(.+?)\*\*',raw,re.S); desc=re.sub(r'\s+',' ',intro.group(1)).strip() if intro else h1; desc=re.sub(r'[*_`]','',desc)[:300]; return raw,h1,desc
 def city_from_h1(h1):
-    m = re.search(r"in\s+([A-Za-z .'-]+?),?\s*BC", h1)
-    return m.group(1).strip() if m else h1
-
-def parse(md_path):
-    raw = open(md_path, encoding="utf-8").read()
-    h1 = re.search(r"^#\s+(.+)$", raw, re.M).group(1).strip()
-    intro = re.search(r"\*\*(.+?)\*\*", raw, re.S)
-    desc = re.sub(r"\s+", " ", intro.group(1)).strip() if intro else h1
-    desc = re.sub(r"[*_`]", "", desc)[:300]
-    faqs = []
-    faq_sec = re.search(r"##[^\n]*FAQ[^\n]*\n(.*?)(?=\n##\s|\Z)", raw, re.S)
-    if faq_sec:
-        for m in re.finditer(r"\*\*(.+?\?)\*\*\s*\n+(.+?)(?=\n\*\*|\Z)", faq_sec.group(1), re.S):
-            q = re.sub(r"\s+", " ", m.group(1)).strip()
-            a = re.sub(r"\s+", " ", re.sub(r"[*_`]", "", m.group(2))).strip()
-            if q and a: faqs.append((q, a))
-    return raw, h1, desc, faqs
-
-def civic_block(slug, city):
-    c = CIVIC.get(slug)
-    if not c: return ""
-    mapq = quote(f"{city} City Hall, BC")
-    src = f"https://maps.google.com/maps?q={mapq}&z=14&output=embed"
-    return f'''<div class="civic">
-  <div class="civic-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{src}" title="{html.escape(city)} City Hall map"></iframe></div>
-  <div class="civic-info">
-    <div class="civic-k">Local Building Authority</div>
-    <div class="civic-auth">{html.escape(c["auth"])}</div>
-    <p class="civic-note">{html.escape(c["note"])}</p>
-    <div class="civic-hall"><span>City Hall</span> {html.escape(c["hall"])}</div>
-    <div class="civic-links">
-      <a class="civic-btn" href="{c["permit"]}" target="_blank" rel="noopener">Building Permits &amp; Applications &rarr;</a>
-      <a class="civic-btn ghost" href="https://maps.google.com/maps?q={mapq}" target="_blank" rel="noopener">Open in Maps</a>
-    </div>
-  </div>
-</div>'''
-
-def build_schema(url, title, desc, city, faqs):
-    graph = [
-        {"@type": ["Organization","HomeAndConstructionBusiness"], "@id": url+"#business",
-         "name":"Just Doors","url":url,"description":desc,
-         "areaServed":{"@type":"City","name":city},
-         "parentOrganization":{"@type":"Organization","name":"Builderhaus","url":"https://buildershaus.com"},
-         "knowsAbout":["Fire-rated doors","Security doors","Multi-family suite entry doors","Door schedules","NFPA 80"]},
-        {"@type":"BreadcrumbList","itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Just Doors","item":SITE+"/"},
-            {"@type":"ListItem","position":2,"name":city,"item":url}]},
-    ]
-    if faqs:
-        graph.append({"@type":"FAQPage","mainEntity":[
-            {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faqs]})
-    return json.dumps({"@context":"https://schema.org","@graph":graph}, ensure_ascii=False)
-
-WIDGET = open(os.path.join(os.path.dirname(__file__), "_widget.html"), encoding="utf-8").read()
-
-TEMPLATE = open(os.path.join(os.path.dirname(__file__), "_template.html"), encoding="utf-8").read()
-
+ m=re.search(r'in\s+([A-Za-z .&\'-]+?),?\s*BC',h1); return m.group(1).strip() if m else h1.replace('Door Supply & Installation in ','').replace(', BC','')
+def civic(slug,city):
+ c=CIVIC.get(slug)
+ if not c:return ''
+ q=quote(f'{city} City Hall, BC'); return f'''<div class="civic"><div class="civic-map"><iframe loading="lazy" src="https://maps.google.com/maps?q={q}&z=14&output=embed" title="{html.escape(city)} City Hall map"></iframe></div><div class="civic-info"><div class="civic-k">Local Building Authority</div><div class="civic-auth">{html.escape(c['auth'])}</div><p class="civic-note">{html.escape(c['note'])}</p><div class="civic-hall">{html.escape(c['hall'])}</div><div class="civic-links"><a class="civic-btn" href="{c['permit']}" target="_blank" rel="noopener">Building information &rarr;</a><a class="civic-btn ghost" href="https://maps.google.com/maps?q={q}" target="_blank" rel="noopener">Open in Maps</a></div></div></div>'''
+def schema(url,desc,city):
+ return json.dumps({'@context':'https://schema.org','@graph':[{'@type':'Organization','@id':'https://justdoors.co/#organization','name':'Just Doors','url':SITE+'/','description':'Door supply, schedules, takeoffs, hardware coordination and installation coordination in the Lower Mainland.','parentOrganization':{'@type':'Organization','name':'Builderhaus','url':'https://buildershaus.com/'}},{'@type':'Service','name':f'Door supply and coordination in {city}','url':url,'provider':{'@id':'https://justdoors.co/#organization'},'areaServed':{'@type':'City','name':city},'description':desc},{'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Just Doors','item':SITE+'/'},{'@type':'ListItem','position':2,'name':city,'item':url}]}]},ensure_ascii=False).replace('</','<\\/')
 def main():
-    for md in sorted(glob.glob(os.path.join(SRC, "*.md"))):
-        raw, h1, desc, faqs = parse(md)
-        slug = os.path.splitext(os.path.basename(md))[0]
-        city = city_from_h1(h1)
-        url = f"{SITE}/{slug}"
-        body = markdown.markdown(raw, extensions=["extra"])
-        body = re.sub(r"<p><strong>", '<p class="lead"><strong>', body, count=1)
-        # inject civic card right after the lead paragraph
-        civ = civic_block(slug, city)
-        if civ:
-            body = re.sub(r"(</p>)", r"\1\n" + civ.replace("\\", "\\\\"), body, count=1)
-        page = (TEMPLATE
-            .replace("__GSV__", GSV)
-            .replace("__TITLE__", html.escape(h1))
-            .replace("__DESC__", html.escape(desc))
-            .replace("__URL__", url)
-            .replace("__CITY__", html.escape(city))
-            .replace("__SCHEMA__", schema_safe(build_schema(url,h1,desc,city,faqs)))
-            .replace("__BODY__", body)
-            .replace("__WIDGET__", WIDGET))
-        open(os.path.join(OUT, f"{slug}.html"),"w",encoding="utf-8").write(page)
-        print(f"  built /{slug}  ({len(body.split())} words, {len(faqs)} FAQs, civic={'yes' if civ else 'no'})")
-
-def schema_safe(s):
-    return s.replace("</", "<\\/")
-
-if __name__ == "__main__":
-    print("Generating city pages:")
-    main()
+ template=open(os.path.join(os.path.dirname(__file__),'_template.html'),encoding='utf-8').read(); widget=open(os.path.join(os.path.dirname(__file__),'_widget.html'),encoding='utf-8').read()
+ for md in sorted(glob.glob(os.path.join(SRC,'*.md'))):
+  raw,h1,desc=parse(md); slug=os.path.splitext(os.path.basename(md))[0]; city=city_from_h1(h1); url=f'{SITE}/{slug}'; body=markdown.markdown(raw,extensions=['extra']); body=re.sub(r'<p><strong>','<p class="lead"><strong>',body,count=1); cb=civic(slug,city); body=re.sub(r'(</p>)',r'\1\n'+cb.replace('\\','\\\\'),body,count=1) if cb else body; page=template.replace('__GSV__',GSV).replace('__TITLE__',html.escape(h1)).replace('__DESC__',html.escape(desc)).replace('__URL__',url).replace('__CITY__',html.escape(city)).replace('__SCHEMA__',schema(url,desc,city)).replace('__BODY__',body).replace('__WIDGET__',widget); open(os.path.join(OUT,f'{slug}.html'),'w',encoding='utf-8').write(page); print('built',slug)
+if __name__=='__main__':main()
