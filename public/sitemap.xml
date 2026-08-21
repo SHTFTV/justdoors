@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://justdoors.co/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://justdoors.co/vancouver</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://justdoors.co/surrey</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://justdoors.co/burnaby</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://justdoors.co/surrey</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://justdoors.co/richmond</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://justdoors.co/new-westminster</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://justdoors.co/coquitlam</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://justdoors.co/port-coquitlam</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/port-moody</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/maple-ridge</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/pitt-meadows</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://justdoors.co/langley</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://justdoors.co/white-rock</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/delta</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/west-vancouver</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/north-vancouver</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/abbotsford</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/chilliwack</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://justdoors.co/mission</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
