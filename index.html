@@ -31,12 +31,25 @@
       "@graph": [
         {
           "@type": "Organization",
+          "@id": "https://buildershaus.com/#organization",
+          "name": "Builderhaus",
+          "url": "https://buildershaus.com/",
+          "description": "Parent network for specialized construction trade properties.",
+          "subOrganization": [
+            { "@id": "https://justdoors.co/#organization" },
+            { "@type": "Organization", "name": "Steel Stud Contractors", "url": "https://steelstudcontractors.com/" },
+            { "@type": "Organization", "name": "Drywallers.io", "url": "https://drywallers.io/" }
+          ]
+        },
+        {
+          "@type": "Organization",
           "@id": "https://justdoors.co/#organization",
           "name": "Just Doors",
           "alternateName": "JustDoors.co",
           "url": "https://justdoors.co/",
           "slogan": "No Windows. Just Doors.",
-          "description": "Professional door supply and installation for residential, commercial, high-rise, multi-family and new construction projects across Metro Vancouver and the Fraser Valley.",
+          "description": "A specialized Builderhaus door division focused on professional door supply, specification, coordination and installation services for residential, commercial, high-rise, multi-family and new construction projects across Metro Vancouver and the Fraser Valley.",
+          "parentOrganization": { "@id": "https://buildershaus.com/#organization" },
           "knowsAbout": ["Door supply", "Door installation", "Commercial doors", "High-rise doors", "New construction doors", "Fire-rated door assemblies", "Hollow metal doors and frames", "Architectural door hardware", "Door schedules and takeoffs"],
           "areaServed": { "@type": "AdministrativeArea", "name": "Lower Mainland, British Columbia" }
         },
@@ -47,17 +60,26 @@
           "url": "https://rambowalls.com/",
           "email": "rambowallceiling@gmail.com",
           "telephone": "+1-778-773-2790",
-          "description": "The installation and related construction contractor currently serving Just Doors projects in the Lower Mainland, including door installation, wall and opening adjustments, T-bar repairs and ceiling work.",
+          "description": "The current installation and related construction contractor serving Just Doors projects in the Lower Mainland, including door installation, wall and opening adjustments, drywall work, T-bar repairs and ceiling installation.",
           "areaServed": { "@type": "AdministrativeArea", "name": "Lower Mainland, British Columbia" }
         },
         {
           "@type": "Service",
-          "@id": "https://justdoors.co/#door-service",
-          "name": "Professional Door Supply and Installation",
+          "@id": "https://justdoors.co/#door-supply-service",
+          "name": "Professional Door Supply and Project Coordination",
           "url": "https://justdoors.co/",
           "provider": { "@id": "https://justdoors.co/#organization" },
           "areaServed": { "@type": "AdministrativeArea", "name": "Lower Mainland, British Columbia" },
-          "serviceType": ["Door supply", "Door installation", "Door replacement", "Commercial door installation", "High-rise door installation", "New construction door installation", "Emergency door work"]
+          "serviceType": ["Door supply", "Door replacement", "Commercial door systems", "High-rise door systems", "New construction door systems", "Fire-rated door assemblies", "Door schedules and takeoffs"]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://justdoors.co/#door-installation-service",
+          "name": "Door Installation and Related Construction",
+          "url": "https://justdoors.co/",
+          "provider": { "@id": "https://rambowalls.com/#organization" },
+          "areaServed": { "@type": "AdministrativeArea", "name": "Lower Mainland, British Columbia" },
+          "serviceType": ["Door installation", "Door replacement installation", "Commercial door installation", "High-rise door installation", "New construction door installation", "Emergency door work", "Wall and opening adjustments", "Drywall work", "T-bar repair", "T-bar ceiling installation"]
         },
         {
           "@type": "WebSite",
