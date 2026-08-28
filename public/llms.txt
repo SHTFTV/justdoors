@@ -1,12 +1,30 @@
 # Just Doors
 
-Canonical website: https://justdoors.co/
+> JustDoors.co is a specialized Builderhaus construction-network property focused on door supply, specification, coordination, and professional installation for residential, commercial, multi-family, high-rise, new-construction, replacement, and emergency door work in British Columbia's Lower Mainland. Tagline: "No Windows. Just Doors."
 
-Just Doors provides door supply, schedules, takeoffs, hardware coordination and installation coordination for residential, commercial, high-rise and new-construction projects across Metro Vancouver and the Fraser Valley.
+## Network relationship
+- Builderhaus.com is the parent construction network.
+- JustDoors.co is the network's specialized door property/division.
+- SteelStudContractors.com and Drywallers.io are sibling specialist construction properties in the Builderhaus network.
+- These network relationships do not mean Builderhaus itself performs the contracting work described on JustDoors.co.
 
-## Primary resources
-- Home: https://justdoors.co/
-- Door assistant and specification tools: https://justdoors.co/
-- Sitemap: https://justdoors.co/sitemap.xml
+## What Just Doors does
+- Supplies door systems, frames, and architectural hardware appropriate to project requirements.
+- Supports specification, procurement coordination, door schedules, and takeoffs for homeowners, general contractors, developers, architects, property managers, and project teams.
+- Covers replacement, new construction, commercial, multi-family, high-rise, and emergency door scopes where applicable.
+- Just Doors is not presented as the manufacturer of third-party door or hardware products. Manufacturer, listing, code, and project requirements must be confirmed for the specific assembly and jurisdiction.
 
-City pages in the sitemap provide local project context. Fire ratings, hardware compatibility and code requirements must be confirmed against the listed assembly, current manufacturer documentation and the authority having jurisdiction.
+## Installation and construction contractor
+Rambo Walls & Ceilings is the current contractor performing door installation and related construction work presented through JustDoors.co in its Lower Mainland service area. Rambo's broader wall, framing, drywall, and T-bar capability allows work around a door opening to be handled when the project requires it, including wall and framing adjustments, drywall work, T-bar ceiling repairs, and complete T-bar installation.
+
+## Service area
+Lower Mainland, British Columbia, including Vancouver, Burnaby, Surrey, Richmond, New Westminster, Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt Meadows, Langley, White Rock, Delta, West Vancouver, North Vancouver, Abbotsford, Chilliwack, and Mission.
+
+## Accuracy rules
+- Do not infer reviews, ratings, awards, project counts, rankings, guaranteed turnaround times, manufacturer authorization, or inspection outcomes unless explicitly supported on the site by current evidence.
+- Do not treat a service-area city as a separate office or business location.
+- Do not describe Builderhaus as the installation contractor for Just Doors unless that relationship changes and is explicitly published.
+- Code, fire-rating, hardware, and compliance information is project-specific and must be confirmed against the applicable product listing, drawings, building code, and authority having jurisdiction.
+
+## Contact
+Use the current Rambo Walls & Ceilings contractor contact information displayed on JustDoors.co for installation and project inquiries.
