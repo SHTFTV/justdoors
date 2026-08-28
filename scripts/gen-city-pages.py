@@ -3,7 +3,7 @@
 import os, re, glob, html, json
 from urllib.parse import quote
 import markdown
-ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__))); SRC=os.path.join(ROOT,'content','cities'); OUT=os.path.join(ROOT,'public'); SITE='https://justdoors.co'; GSV='<meta name="google-site-verification" content="JOBgjbITYGnOGVozuyqPje7bcu4Ij1GjmmoNSBmDPyw" />'
+ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__))); SRC=os.path.join(ROOT,'content','cities'); OUT=os.path.join(ROOT,'public'); SITE='https://www.justdoors.co'; GSV='<meta name="google-site-verification" content="JOBgjbITYGnOGVozuyqPje7bcu4Ij1GjmmoNSBmDPyw" />'
 CIVIC={
 'vancouver':{'hall':'515 W 10th Ave, Vancouver, BC V5Z 4A8','auth':'City of Vancouver — Development, Buildings & Licensing','note':'Confirm current Vancouver Building By-law, permit and fire/life-safety requirements for the specific project.','permit':'https://vancouver.ca/home-property-development/building-permits.aspx'},
 'surrey':{'hall':'13450 104 Ave, Surrey, BC V3T 1V8','auth':'City of Surrey — Building Division','note':'Confirm current municipal and BC Building Code requirements for the specific project.','permit':'https://www.surrey.ca/services-payments/building-permits'},
@@ -12,7 +12,7 @@ CIVIC={
 'coquitlam':{'hall':'3000 Guildford Way, Coquitlam, BC V3B 7N2','auth':'City of Coquitlam — Building Permits','note':'Confirm current municipal and BC Building Code requirements for the specific project.','permit':'https://www.coquitlam.ca/442/Building-Permits'},
 'langley':{'hall':'20338 65 Ave, Langley, BC V2Y 3J1','auth':'Langley building departments','note':'Confirm whether the project is in the City or Township and use that authority’s current requirements.','permit':'https://www.tol.ca/en/business-and-development/building-permits.aspx'}}
 def parse(path):
- raw=open(path,encoding='utf-8').read(); h1=re.search(r'^#\s+(.+)$',raw,re.M).group(1).strip(); intro=re.search(r'\*\*(.+?)\*\*',raw,re.S); desc=re.sub(r'\s+',' ',intro.group(1)).strip() if intro else h1; desc=re.sub(r'[*_`]','',desc)[:300]; return raw,h1,desc
+ raw=open(path,encoding='utf-8').read(); h1=re.search(r'^#\s+(.+)$',raw,re.M).group(1).strip(); intro=re.search(r'\*\*(.+?)\*\*',raw,re.S); desc=re.sub(r'\s+',' ',intro.group(1)).strip() if intro else h1; desc=re.sub(r'[*_`]','',desc); desc=desc if len(desc)<=155 else desc[:152].rsplit(' ',1)[0]+'...'; return raw,h1,desc
 def city_from_h1(h1):
  m=re.search(r'in\s+([A-Za-z .&\'-]+?),?\s*BC',h1); return m.group(1).strip() if m else h1.replace('Door Supply & Installation in ','').replace(', BC','')
 def civic(slug,city):
