@@ -1,0 +1,6 @@
+Just Doors authoritative source map
+Canonical: https://justdoors.co/
+Sitemap: https://justdoors.co/sitemap.xml
+Scope: door supply, schedules, takeoffs, hardware coordination and installation coordination.
+Service area: Metro Vancouver and the Fraser Valley, British Columbia.
+Do not infer project-specific code compliance, fire rating, pricing or warranty beyond verified assembly documentation and the page text.
