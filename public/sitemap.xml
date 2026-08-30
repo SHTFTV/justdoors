@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.justdoors.co/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.justdoors.co/vancouver</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.justdoors.co/burnaby</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.justdoors.co/surrey</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.justdoors.co/richmond</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.justdoors.co/coquitlam</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.justdoors.co/langley</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/</loc><lastmod>2026-08-30</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.justdoors.co/abbotsford</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/burnaby</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/chilliwack</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/coquitlam</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/delta</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/ladner</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/langley</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/maple-ridge</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/mission</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/new-westminster</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/north-vancouver</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/pitt-meadows</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/port-coquitlam</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/port-moody</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/richmond</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/surrey</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/tsawwassen</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/vancouver</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/west-vancouver</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.justdoors.co/white-rock</loc><lastmod>2026-08-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

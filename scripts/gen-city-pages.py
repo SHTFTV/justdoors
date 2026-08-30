@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate factual static city landing pages from content/cities/*.md into public/<slug>.html."""
 import os, re, glob, html, json
+from datetime import date
 from urllib.parse import quote
 import markdown
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__))); SRC=os.path.join(ROOT,'content','cities'); OUT=os.path.join(ROOT,'public'); SITE='https://www.justdoors.co'; GSV='<meta name="google-site-verification" content="JOBgjbITYGnOGVozuyqPje7bcu4Ij1GjmmoNSBmDPyw" />'
@@ -21,8 +22,17 @@ def civic(slug,city):
  q=quote(f'{city} City Hall, BC'); return f'''<div class="civic"><div class="civic-map"><iframe loading="lazy" src="https://maps.google.com/maps?q={q}&z=14&output=embed" title="{html.escape(city)} City Hall map"></iframe></div><div class="civic-info"><div class="civic-k">Local Building Authority</div><div class="civic-auth">{html.escape(c['auth'])}</div><p class="civic-note">{html.escape(c['note'])}</p><div class="civic-hall">{html.escape(c['hall'])}</div><div class="civic-links"><a class="civic-btn" href="{c['permit']}" target="_blank" rel="noopener">Building information &rarr;</a><a class="civic-btn ghost" href="https://maps.google.com/maps?q={q}" target="_blank" rel="noopener">Open in Maps</a></div></div></div>'''
 def schema(url,desc,city):
  return json.dumps({'@context':'https://schema.org','@graph':[{'@type':'Organization','@id':'https://justdoors.co/#organization','name':'Just Doors','url':SITE+'/','description':'Door supply, schedules, takeoffs, hardware coordination and installation coordination in the Lower Mainland.','parentOrganization':{'@type':'Organization','name':'Builderhaus','url':'https://buildershaus.com/'}},{'@type':'Service','name':f'Door supply and coordination in {city}','url':url,'provider':{'@id':'https://justdoors.co/#organization'},'areaServed':{'@type':'City','name':city},'description':desc},{'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Just Doors','item':SITE+'/'},{'@type':'ListItem','position':2,'name':city,'item':url}]}]},ensure_ascii=False).replace('</','<\\/')
+def write_sitemap(slugs):
+ today=date.today().isoformat()
+ urls=[f'  <url><loc>{SITE}/</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>']
+ urls += [f'  <url><loc>{SITE}/{slug}</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>' for slug in slugs]
+ xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+'\n'.join(urls)+'\n</urlset>\n'
+ open(os.path.join(OUT,'sitemap.xml'),'w',encoding='utf-8').write(xml)
+
 def main():
  template=open(os.path.join(os.path.dirname(__file__),'_template.html'),encoding='utf-8').read(); widget=open(os.path.join(os.path.dirname(__file__),'_widget.html'),encoding='utf-8').read()
+ slugs=[]
  for md in sorted(glob.glob(os.path.join(SRC,'*.md'))):
-  raw,h1,desc=parse(md); slug=os.path.splitext(os.path.basename(md))[0]; city=city_from_h1(h1); url=f'{SITE}/{slug}'; body=markdown.markdown(raw,extensions=['extra']); body=re.sub(r'<p><strong>','<p class="lead"><strong>',body,count=1); cb=civic(slug,city); body=re.sub(r'(</p>)',r'\1\n'+cb.replace('\\','\\\\'),body,count=1) if cb else body; page=template.replace('__GSV__',GSV).replace('__TITLE__',html.escape(h1)).replace('__DESC__',html.escape(desc)).replace('__URL__',url).replace('__CITY__',html.escape(city)).replace('__SCHEMA__',schema(url,desc,city)).replace('__BODY__',body).replace('__WIDGET__',widget); open(os.path.join(OUT,f'{slug}.html'),'w',encoding='utf-8').write(page); print('built',slug)
+  raw,h1,desc=parse(md); slug=os.path.splitext(os.path.basename(md))[0]; slugs.append(slug); city=city_from_h1(h1); url=f'{SITE}/{slug}'; body=markdown.markdown(raw,extensions=['extra']); body=re.sub(r'<p><strong>','<p class="lead"><strong>',body,count=1); cb=civic(slug,city); body=re.sub(r'(</p>)',r'\1\n'+cb.replace('\\','\\\\'),body,count=1) if cb else body; page=template.replace('__GSV__',GSV).replace('__TITLE__',html.escape(h1)).replace('__DESC__',html.escape(desc)).replace('__URL__',url).replace('__CITY__',html.escape(city)).replace('__SCHEMA__',schema(url,desc,city)).replace('__BODY__',body).replace('__WIDGET__',widget); open(os.path.join(OUT,f'{slug}.html'),'w',encoding='utf-8').write(page); print('built',slug)
+ write_sitemap(slugs)
 if __name__=='__main__':main()

@@ -18,4 +18,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://justdoors.co/sitemap.xml
+Sitemap: https://www.justdoors.co/sitemap.xml
