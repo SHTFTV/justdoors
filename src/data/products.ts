@@ -13,7 +13,7 @@ export const DOOR_PRODUCTS: DoorProduct[] = [
     coreType: 'Non-combustible Mineral Core or Stave Lumber Core with Crossband',
     standardSizes: ['3\'0" x 7\'0"', '3\'0" x 8\'0"', '3\'4" x 8\'0"', 'Custom Oversized'],
     finishes: ['Rift White Oak', 'Black American Walnut', 'Natural Maple', 'Quarter Sawn Teak', 'Factory Primed Pre-Finished Matte'],
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80',
+    image: '/images/suite-entry-door-example.jpg',
     specs: [
       { label: 'Door Thickness', value: '1-3/4" (44.5mm) Standard' },
       { label: 'Fire Rating', value: '20-Min UL 10C / NFPA 80 Compliant' },
@@ -65,7 +65,7 @@ export const DOOR_PRODUCTS: DoorProduct[] = [
     coreType: '6063-T6 Extruded Aluminum with Polyamide Thermal Strut Isolator',
     standardSizes: ['3\'6" x 7\'0"', '3\'6" x 8\'0"', '6\'0" x 7\'0" (Pairs)', '7\'0" x 8\'0" (Pairs)'],
     finishes: ['Clear Anodized Class I', 'Dark Bronze Anodized', 'Matte Black Anodized', 'Custom PPG Duranar Color Match'],
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80',
+    image: '/images/commercial-glass-door-example.jpg',
     specs: [
       { label: 'Stile Width', value: 'Wide Stile 5" (127mm) or Medium Stile 3-1/2" (89mm)' },
       { label: 'Glass Thickness', value: '1" (25mm) Insulated Low-E Tempered / Laminated' },
@@ -90,7 +90,7 @@ export const DOOR_PRODUCTS: DoorProduct[] = [
     coreType: 'Multi-ply LVL Steel-Reinforced Warp-Free Composite Core',
     standardSizes: ['4\'0" x 8\'0"', '4\'6" x 9\'0"', '5\'0" x 10\'0"', 'Custom Engineered to 12ft'],
     finishes: ['Natural Sapele Mahogany', 'Vertical Grain Douglas Fir', 'Smoked European White Oak', 'Charred Shou Sugi Ban Wood', 'Zinc/Bronze Patina Clad'],
-    image: 'https://images.unsplash.com/photo-1534595038511-9f219fe0c979?auto=format&fit=crop&w=1000&q=80',
+    image: '/images/residential-entry-door-example.jpg',
     specs: [
       { label: 'Door Thickness', value: '2-1/4" to 3" (57mm - 76mm) Heavy Slab' },
       { label: 'Pivot Mechanism', value: 'FritsJurgens System M+ Hydraulic In-Door Pivot' },
