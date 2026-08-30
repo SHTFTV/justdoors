@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { HardwareManufacturersMarquee } from './components/HardwareManufacturersMarquee';
 import { DoorsForEveryProject } from './components/DoorsForEveryProject';
+import { PressedSteelDoorsSection } from './components/PressedSteelDoorsSection';
 import { HighRiseSpotlight } from './components/HighRiseSpotlight';
 import { DoorScheduleTool } from './components/DoorScheduleTool';
 import { AIDoorAssistant } from './components/AIDoorAssistant';
@@ -105,6 +106,11 @@ function AppContent() {
         <DoorsForEveryProject 
           activeSector={activeSector}
           onSelectSector={setActiveSector}
+          onOpenQuoteModal={handleOpenQuoteModal}
+          onOpenScheduleModal={handleOpenScheduleModal}
+        />
+
+        <PressedSteelDoorsSection
           onOpenQuoteModal={handleOpenQuoteModal}
           onOpenScheduleModal={handleOpenScheduleModal}
         />

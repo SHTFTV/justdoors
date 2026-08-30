@@ -39,7 +39,7 @@ export const DOOR_PRODUCTS: DoorProduct[] = [
     coreType: 'Kraft Honeycomb, Polystyrene Foam, or Steel-Stiffened Mineral Wool',
     standardSizes: ['3\'0" x 7\'0"', '3\'6" x 7\'0"', '4\'0" x 8\'0"', '6\'0" x 8\'0" (Pairs)'],
     finishes: ['A60 Galvannealed Zinc-Coated', 'Architectural Charcoal Grey Primer', 'Factory Powder Coat Matte Black', 'Stainless Steel 304/316'],
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80',
+    image: '/images/pressed-steel-door-example.jpg',
     specs: [
       { label: 'Steel Gauge', value: '16-Gauge (1.5mm) Heavy-Duty Skin (14-Gauge option)' },
       { label: 'Frame Profile', value: '14-Gauge Welded Throat 5-3/4" to 8-1/4"' },
