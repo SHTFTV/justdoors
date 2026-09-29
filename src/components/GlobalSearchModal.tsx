@@ -296,12 +296,12 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                     onClick={() => handleSelectDoor(door)}
                     className="w-full text-left p-3 rounded-2xl bg-neutral-950/80 hover:bg-neutral-800/80 border border-neutral-800 hover:border-amber-500/50 transition-all flex items-start gap-3.5 group"
                   >
-                    <img
+                    {door.image ? (<img
                       src={door.image}
                       alt={door.name}
                       referrerPolicy="no-referrer"
                       className="w-14 h-14 rounded-xl object-cover shrink-0 border border-neutral-800 group-hover:scale-105 transition-transform"
-                    />
+                    />) : (<div className="flex items-center justify-center h-full min-h-16 p-4 text-neutral-400 text-sm">Product appearance confirmed with selection</div>)}
 
                     <div className="flex-grow min-w-0 space-y-1">
                       <div className="flex items-center justify-between gap-2">

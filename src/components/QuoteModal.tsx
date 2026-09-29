@@ -68,39 +68,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
       return;
     }
 
-    setIsSubmitting(true);
-    let quoteId = '';
-    try {
-      const res = await fetch('/api/submit-quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          sector,
-          scheduleFileName: uploadedFile?.name,
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        quoteId = data.quoteId;
-        setSubmittedQuoteId(quoteId);
-      } else {
-        quoteId = `JD-${sector.toUpperCase().slice(0, 3)}-${Math.floor(100000 + Math.random() * 900000)}`;
-        setSubmittedQuoteId(quoteId);
-      }
-    } catch (err) {
-      console.error(err);
-      quoteId = `JD-${sector.toUpperCase().slice(0, 3)}-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedQuoteId(quoteId);
-    } finally {
-      setIsSubmitting(false);
-      const sectorLabel = sector === 'high-rise' ? 'High-Rise & Multi-Family' : sector === 'commercial' ? 'Commercial' : 'Residential';
-      success('Quote Request Received!', `Your ${sectorLabel} door project package has been routed to our architectural estimating team.`, {
-        referenceId: quoteId,
-        metadata: `${formData.openingCount ? formData.openingCount + ' Openings • ' : ''}${formData.timeline}`,
-        duration: 7000,
-      });
-    }
+    const body = [
+      'Just Doors project enquiry',
+      ...Object.entries({ ...formData, sector }).map(([key, value]) => `${key}: ${value}`),
+      '', 'Please attach any drawings, photos or schedules to this email before sending.'
+    ].join('\n');
+    window.location.href = `mailto:rambowallceiling@gmail.com?subject=${encodeURIComponent('Just Doors quote enquiry — ' + (formData.company || formData.name))}&body=${encodeURIComponent(body)}`;
+    info('Send your enquiry from your email app', 'Review the draft, attach your files and press Send. Nothing has been submitted through this website.');
   };
 
   return (
@@ -275,24 +249,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 </div>
               </div>
 
-              {/* Optional Schedule / Plan File Upload */}
-              <div className="p-3.5 rounded-2xl bg-neutral-950 border border-dashed border-neutral-700 hover:border-amber-500/60 relative text-center space-y-1">
-                <input
-                  type="file"
-                  accept=".xlsx,.xls,.csv,.pdf,.dwg"
-                  onChange={handleFileUpload}
-                  className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                />
-                <div className="flex items-center justify-center gap-2 text-xs font-semibold text-neutral-300">
-                  <UploadCloud className="w-4 h-4 text-amber-400" />
-                  <span>Attach Door Schedule, Floorplans, or Spec PDF (Optional)</span>
-                </div>
-                {uploadedFile && (
-                  <div className="text-[11px] font-mono text-amber-400 font-bold">
-                    ✓ Attached: {uploadedFile.name} ({uploadedFile.size})
-                  </div>
-                )}
-              </div>
+              <p className="text-sm text-neutral-300">Your email app will open with the project details. Attach drawings or schedules there and press Send. If it does not open, email <a className="text-amber-400 underline" href="mailto:rambowallceiling@gmail.com">rambowallceiling@gmail.com</a> or call <a className="text-amber-400" href="tel:7787732790">778-773-2790</a>.</p>
 
               <div>
                 <label className="block text-xs font-medium text-neutral-300 mb-1">Project Notes / Fire & Hardware Specs</label>
@@ -308,7 +265,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
               <div className="pt-2 flex items-center justify-between gap-3">
                 <div className="text-[11px] text-neutral-400 flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  <span>24-48hr Takeoff Turnaround</span>
+                  <span>Review before sending</span>
                 </div>
 
                 <button
@@ -320,7 +277,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     <span>Submitting Request...</span>
                   ) : (
                     <>
-                      <span>Submit Quote Request</span>
+                      <span>Open Email Draft</span>
                       <Send className="w-3.5 h-3.5" />
                     </>
                   )}
