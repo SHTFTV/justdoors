@@ -29,4 +29,4 @@ body='<h1>Door Planning Guides</h1><p class="lead">Practical checklists for prep
 (ROOT/'public/guides.html').write_text(page('Door Planning Guides | Just Doors','Door schedule, replacement and commercial quote planning guides.',SITE+'/guides',body,{'@context':'https://schema.org','@type':'CollectionPage','name':'Door Planning Guides','url':SITE+'/guides'}))
 p=ROOT/'public/sitemap.xml';s=p.read_text();extra=['guides']+['guides/'+p['slug'] for p in posts]
 s=s.replace('</urlset>',''.join('<url><loc>'+SITE+'/'+slug+'</loc><lastmod>2026-09-29</lastmod></url>\n' for slug in extra)+'</urlset>');p.write_text(s)
-print('Built three guides, their index and sitemap entries.')
+print(f'Built {len(posts)} guides, their index and sitemap entries.')
