@@ -246,26 +246,8 @@ app.post("/api/batch-validate-schedule", (req, res) => {
 });
 
 // Quote & Door Schedule Submission API
-app.post("/api/submit-quote", (req, res) => {
-  const quoteData = req.body;
-  console.log("Received Quote / Schedule Submission:", quoteData);
-  
-  // Generate reference number
-  const prefix = quoteData.sector === "high-rise" ? "JD-HR" : quoteData.sector === "commercial" ? "JD-COM" : "JD-RES";
-  const quoteId = `${prefix}-${Math.floor(100000 + Math.random() * 900000)}`;
-
-  res.json({
-    success: true,
-    quoteId,
-    receivedAt: new Date().toISOString(),
-    message: "Door schedule and project details received. An architectural door consultant will review your specifications and supply a formal takeoff within 1-2 business days.",
-    summary: {
-      projectType: quoteData.sector,
-      openingsCount: quoteData.openingCount || "Schedule Attached",
-      contactName: quoteData.name,
-      company: quoteData.company || "Direct Inquiry",
-    }
-  });
+app.post("/api/submit-quote", (_req, res) => {
+  res.status(503).json({ success: false, error: "Online submission is unavailable. Email rambowallceiling@gmail.com or call 778-773-2790." });
 });
 
 // Vite integration

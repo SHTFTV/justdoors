@@ -161,12 +161,12 @@ export const HardwareComparisonModal: React.FC<HardwareComparisonModalProps> = (
 
                 {/* Thumbnail & Title */}
                 <div className="flex gap-3 items-center pt-2">
-                  <img
+                  {productA.image ? (<img
                     src={productA.image}
                     alt={productA.name}
                     referrerPolicy="no-referrer"
                     className="w-20 h-20 rounded-xl object-cover border border-neutral-800 shrink-0"
-                  />
+                  />) : (<div className="flex items-center justify-center h-full min-h-16 p-4 text-neutral-400 text-sm">Product appearance confirmed with selection</div>)}
                   <div className="space-y-1 min-w-0">
                     <h4 className="text-sm font-bold text-white font-display leading-tight line-clamp-2">
                       {productA.name}
@@ -223,12 +223,12 @@ export const HardwareComparisonModal: React.FC<HardwareComparisonModalProps> = (
 
                 {/* Thumbnail & Title */}
                 <div className="flex gap-3 items-center pt-2">
-                  <img
+                  {productB.image ? (<img
                     src={productB.image}
                     alt={productB.name}
                     referrerPolicy="no-referrer"
                     className="w-20 h-20 rounded-xl object-cover border border-neutral-800 shrink-0"
-                  />
+                  />) : (<div className="flex items-center justify-center h-full min-h-16 p-4 text-neutral-400 text-sm">Product appearance confirmed with selection</div>)}
                   <div className="space-y-1 min-w-0">
                     <h4 className="text-sm font-bold text-white font-display leading-tight line-clamp-2">
                       {productB.name}

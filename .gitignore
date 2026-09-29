@@ -9,3 +9,7 @@ coverage/
 
 # Vercel
 .vercel
+
+.ssr/
+
+.python-build/

@@ -351,7 +351,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
         size: `${(file.size / 1024).toFixed(1)} KB`,
       };
       setUploadedFile(fileData);
-      info('Schedule File Attached', `${file.name} (${fileData.size}) is ready for engineering review.`);
+      info('File selected locally', 'Attach this file in your email app before sending. It has not been uploaded.');
     }
   };
 
@@ -362,45 +362,13 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
       return;
     }
 
-    setIsSubmitting(true);
-    let quoteId = '';
-    try {
-      const response = await fetch('/api/submit-quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sector: 'high-rise',
-          name: contactName,
-          email: contactEmail,
-          company: companyName,
-          projectName: projectName || 'High-Rise / Multi-Family Package',
-          openingCount: totalOpenings.toString(),
-          scheduleItems,
-          uploadedFile,
-          submittedAt: new Date().toISOString(),
-        }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        quoteId = data.quoteId;
-        setSubmittedQuoteId(quoteId);
-      } else {
-        quoteId = `JD-HR-${Math.floor(100000 + Math.random() * 900000)}`;
-        setSubmittedQuoteId(quoteId);
-      }
-    } catch (err) {
-      console.error(err);
-      quoteId = `JD-HR-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedQuoteId(quoteId);
-    } finally {
-      setIsSubmitting(false);
-      success('Door Schedule Submitted Successfully!', 'Our commercial estimating department has queued your package for line-by-line takeoff & hardware pricing.', {
-        referenceId: quoteId,
-        metadata: `${totalOpenings} Total Openings • 24–48hr Response`,
-        duration: 7000,
-      });
-    }
+    const body = [
+      `Name: ${contactName}`, `Email: ${contactEmail}`, `Company: ${companyName}`,
+      `Project: ${projectName}`, `Openings: ${totalOpenings}`, '',
+      'I will attach the exported door schedule and any drawings before sending.'
+    ].join('\n');
+    window.location.href = `mailto:rambowallceiling@gmail.com?subject=${encodeURIComponent('Just Doors schedule enquiry — ' + (projectName || companyName))}&body=${encodeURIComponent(body)}`;
+    info('Email draft prepared', 'Download your schedule using PDF or CSV, attach it in your email app, and press Send. Nothing has been submitted through this website.');
   };
 
   const downloadPDF = () => {
@@ -459,7 +427,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
             Door Schedule Builder & Plan Upload
           </h3>
           <p className="text-xs sm:text-sm text-neutral-400">
-            Submit your complete door schedule with integrated hardware compatibility validation and direct factory takeoff pricing.
+            Prepare your opening schedule, export it as PDF or CSV, and email it with your project details for review.
           </p>
         </div>
 
@@ -512,9 +480,9 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
       <div className="hidden print:block print-header-banner text-black mb-4 pb-3 border-b-2 border-black">
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-xl font-bold uppercase tracking-tight text-black">
+            <h2 className="text-xl font-bold uppercase tracking-tight text-black">
               JUST DOORS — ARCHITECTURAL OPENINGS SCHEDULE
-            </h1>
+            </h2>
             <p className="text-xs text-neutral-700 font-medium">
               Metro Vancouver Commercial, High-Rise & Institutional Doors & Hardware Takeoff
             </p>
@@ -1053,10 +1021,11 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
           </form>
 
           {/* Submission Form Section */}
+          <p className="text-sm text-neutral-300">Download your PDF or CSV first. Attach it and any drawings in your email app before pressing Send. You can also email rambowallceiling@gmail.com or call 778-773-2790.</p>
           <form onSubmit={handleSubmitSchedule} className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-6">
             <div className="flex items-center gap-2 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
               <Send className="w-4 h-4" />
-              <span>Step 2: Submit for Formal Pricing Takeoff</span>
+              <span>Step 2: Email Your Schedule for Pricing</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -1110,7 +1079,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-neutral-800">
               <div className="text-xs text-neutral-400 flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Line-item guaranteed turnaround within 24-48 business hours.</span>
+                <span>Attach the exported schedule and send from your email app.</span>
               </div>
 
               <button
@@ -1122,7 +1091,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                   <span>Processing Schedule...</span>
                 ) : (
                   <>
-                    <span>Send Door Schedule for Takeoff</span>
+                    <span>Open Schedule Email Draft</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}

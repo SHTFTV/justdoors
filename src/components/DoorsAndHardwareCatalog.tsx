@@ -159,9 +159,9 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
         <div className="hidden print:block print-header-banner text-black mb-6 pb-3 border-b-2 border-black">
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-xl font-bold uppercase tracking-tight text-black">
+              <h2 className="text-xl font-bold uppercase tracking-tight text-black">
                 JUST DOORS — ARCHITECTURAL PRODUCT & HARDWARE SPECIFICATIONS
-              </h1>
+              </h2>
               <p className="text-xs text-neutral-700 font-medium">
                 Engineered High-Rise, Commercial, Fire-Rated & Acoustical Assemblies for Metro Vancouver
               </p>
@@ -220,12 +220,12 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
               >
                 {/* Product Image & Badges */}
                 <div className="relative h-60 w-full overflow-hidden bg-neutral-950">
-                  <img 
+                  {product.image ? (<img
                     src={product.image} 
                     alt={product.name}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
+                  />) : (<div className="flex items-center justify-center h-full min-h-16 p-4 text-neutral-400 text-sm">Product appearance confirmed with selection</div>)}
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
 
                   {/* Top Left: Fire Rating & STC Badges */}
@@ -607,11 +607,11 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
             </div>
 
             <div className="h-64 w-full rounded-2xl overflow-hidden bg-neutral-950 relative">
-              <img 
+              {activeProductModal.image ? (<img
                 src={activeProductModal.image} 
                 alt={activeProductModal.name}
                 className="w-full h-full object-cover object-center"
-              />
+              />) : (<div className="flex items-center justify-center h-full min-h-16 p-4 text-neutral-400 text-sm">Product appearance confirmed with selection</div>)}
             </div>
 
             <div className="space-y-4">

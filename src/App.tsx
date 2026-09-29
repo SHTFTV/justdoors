@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { HardwareManufacturersMarquee } from './components/HardwareManufacturersMarquee';
@@ -42,6 +42,13 @@ function AppContent() {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isMarketingModalOpen, setIsMarketingModalOpen] = useState(false);
   const [quoteInitialSector, setQuoteInitialSector] = useState<'high-rise' | 'commercial' | 'residential'>('high-rise');
+
+  useEffect(() => {
+    const openFromHash = () => { if (window.location.hash === '#quote') setIsQuoteModalOpen(true); };
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    return () => window.removeEventListener('hashchange', openFromHash);
+  }, []);
 
   // Municipal City Landing Pages State
   const [selectedMunicipality, setSelectedMunicipality] = useState<MunicipalityData | null>(null);
@@ -183,6 +190,18 @@ function AppContent() {
           onOpenScheduleModal={handleOpenScheduleModal}
           onOpenQuoteModal={handleOpenQuoteModal}
         />
+
+        <section className="py-16 border-b border-neutral-800" aria-labelledby="door-guides-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="door-guides-heading" className="text-3xl font-bold mb-6">Plan your door project</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <a className="p-6 rounded-2xl bg-neutral-900 border border-neutral-700 hover:border-amber-500" href="/guides/door-schedule-quote-checklist"><h3 className="text-xl font-bold text-amber-400 mb-3">Prepare a door schedule</h3><p>Organize opening IDs, hardware, finishes and unresolved requirements before requesting a quote.</p></a>
+              <a className="p-6 rounded-2xl bg-neutral-900 border border-neutral-700 hover:border-amber-500" href="/guides/replace-door-or-door-and-frame"><h3 className="text-xl font-bold text-amber-400 mb-3">Door only, or door and frame?</h3><p>Understand the assessment and surrounding work that affect a replacement project.</p></a>
+              <a className="p-6 rounded-2xl bg-neutral-900 border border-neutral-700 hover:border-amber-500" href="/guides/compare-commercial-door-quotes"><h3 className="text-xl font-bold text-amber-400 mb-3">Compare commercial quotes</h3><p>Compare complete packages, exclusions, delivery assumptions and installation scope.</p></a>
+            </div>
+            <a className="inline-block mt-6 text-amber-400 underline" href="/guides">All door planning guides</a>
+          </div>
+        </section>
 
         {/* AEO indexing + share (Preferred Source, Pin, WhatsApp) */}
         <IndexingShareSection />
