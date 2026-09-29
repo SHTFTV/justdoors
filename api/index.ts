@@ -1,4 +1,4 @@
-import { registerQuoteRoutes } from "../quote-handler";
+import { registerQuoteRoutes } from "../quote-handler.js";
 import express from "express";
 
 // -----------------------------------------------------------------------------
