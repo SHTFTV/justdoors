@@ -30,7 +30,7 @@ import {
 } from 'lucide-react';
 import { DoorScheduleItem, HardwareValidationResult } from '../types';
 import { useToast } from '../context/ToastContext';
-import { generateDoorSchedulePDF } from '../utils/pdfExport';
+
 import { validateHardwareCompatibility } from '../utils/hardwareCompatibility';
 import { 
   HardwareCompatibilityChecker, 
@@ -371,8 +371,9 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
     info('Email draft prepared', 'Download your schedule using PDF or CSV, attach it in your email app, and press Send. Nothing has been submitted through this website.');
   };
 
-  const downloadPDF = () => {
+  const downloadPDF = async () => {
     try {
+      const { generateDoorSchedulePDF } = await import('../utils/pdfExport');
       generateDoorSchedulePDF({
         scheduleItems,
         projectName: projectName || 'Metropolitan Architectural Door Schedule',
@@ -560,10 +561,10 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
               </div>
               <div className="space-y-1">
                 <div className="text-sm font-bold text-white">
-                  Drop your Door Schedule, PDF drawings, or Excel specs
+                  Select a schedule file for your reference
                 </div>
                 <div className="text-xs text-neutral-400">
-                  Accepts .XLSX, .CSV, .PDF architectural plans, or Revit schedules (Up to 50MB)
+                  This selection stays in your browser. Attach the original file in your email app when sending.
                 </div>
               </div>
 

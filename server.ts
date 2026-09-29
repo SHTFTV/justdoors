@@ -1,10 +1,11 @@
+import { registerQuoteRoutes } from "./quote-handler";
 import express from "express";
 import path from "path";
 
 const app = express();
 const PORT = 3000;
 
-app.use(express.json({ limit: "25mb" }));
+app.use(express.json({ limit: "3mb" }));
 
 // Built-in, sector-aware door specification advisory (no external AI service).
 function buildDoorAdvisory(sector?: string): string {
@@ -246,9 +247,7 @@ app.post("/api/batch-validate-schedule", (req, res) => {
 });
 
 // Quote & Door Schedule Submission API
-app.post("/api/submit-quote", (_req, res) => {
-  res.status(503).json({ success: false, error: "Online submission is unavailable. Email rambowallceiling@gmail.com or call 778-773-2790." });
-});
+registerQuoteRoutes(app);
 
 // Vite integration
 async function start() {

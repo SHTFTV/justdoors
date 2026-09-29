@@ -190,7 +190,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="px-3 py-1.5 rounded-full text-xs font-semibold text-amber-300 hover:text-white bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 transition-all flex items-center gap-1"
             >
               <Compass className="w-3.5 h-3.5 text-amber-400" />
-              <span>Cities (28)</span>
+              <span>Cities (20)</span>
             </button>
 
             <button

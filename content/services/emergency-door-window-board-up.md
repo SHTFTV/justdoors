@@ -31,3 +31,7 @@ Requests can be reviewed for Vancouver, Burnaby, Richmond, Surrey, Delta, White 
 ## Request emergency board-up coordination
 
 Call or text **778-773-2790** or email **rambowallceiling@gmail.com**. State that the request concerns a damaged door or window and include the safest available photographs and site-contact details.
+
+## Preparing your enquiry
+
+Use our [emergency board-up information checklist](/guides/emergency-board-up-information-checklist) to organize the site contact, access arrangements and safely available photographs before calling.

@@ -160,7 +160,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-amber-400 transition-colors text-left flex items-center gap-1.5 font-semibold text-amber-300"
                 >
                   <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Lower Mainland Cities (28 Municipalities)</span>
+                  <span>Lower Mainland Cities (20 Municipalities)</span>
                 </button>
               </li>
               <li>

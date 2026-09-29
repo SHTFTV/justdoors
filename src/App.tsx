@@ -199,6 +199,7 @@ function AppContent() {
               <a className="p-6 rounded-2xl bg-neutral-900 border border-neutral-700 hover:border-amber-500" href="/guides/replace-door-or-door-and-frame"><h3 className="text-xl font-bold text-amber-400 mb-3">Door only, or door and frame?</h3><p>Understand the assessment and surrounding work that affect a replacement project.</p></a>
               <a className="p-6 rounded-2xl bg-neutral-900 border border-neutral-700 hover:border-amber-500" href="/guides/compare-commercial-door-quotes"><h3 className="text-xl font-bold text-amber-400 mb-3">Compare commercial quotes</h3><p>Compare complete packages, exclusions, delivery assumptions and installation scope.</p></a>
             </div>
+            <p className="mt-6">More planning help: <a className="text-amber-400 underline" href="/guides/pressed-steel-door-replacement-checklist">Pressed-steel replacement checklist</a> · <a className="text-amber-400 underline" href="/guides/emergency-board-up-information-checklist">Emergency board-up information</a></p>
             <a className="inline-block mt-6 text-amber-400 underline" href="/guides">All door planning guides</a>
           </div>
         </section>
