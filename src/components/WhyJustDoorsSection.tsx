@@ -41,12 +41,12 @@ export const WhyJustDoorsSection: React.FC<WhyJustDoorsSectionProps> = ({
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight leading-tight">
-              No Windows Anywhere.<br />
+              Door Supply & Installation.<br />
               <span className="text-amber-400">Just Doors.</span>
             </h2>
 
             <p className="text-base sm:text-lg text-neutral-300 leading-relaxed">
-              The fact that our company is named <strong className="text-white">Just Doors</strong> is our greatest competitive advantage. By eliminating window supply, exterior siding, and general millwork distractions, we dedicate 100% of our engineering, machining, and logistics to perfecting the door opening.
+              <strong className="text-white">Just Doors</strong> coordinates door and hardware supply, installation and related opening work. Products are sourced from manufacturers for the project; Just Doors does not operate a door manufacturing facility.
             </p>
           </div>
 
@@ -57,27 +57,27 @@ export const WhyJustDoorsSection: React.FC<WhyJustDoorsSectionProps> = ({
             <div className="p-6 rounded-2xl bg-neutral-950/80 border border-neutral-800 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono uppercase text-neutral-500 font-bold">
-                  Generalist Window & Millwork Dealers
+                  Items to coordinate before ordering
                 </span>
-                <XCircle className="w-5 h-5 text-neutral-600" />
+                <FileSpreadsheet className="w-5 h-5 text-neutral-400" />
               </div>
 
               <ul className="space-y-3 text-xs text-neutral-400 font-mono">
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold">✕</span>
-                  <span>Doors are treated as a secondary sideline to high-margin window sales</span>
+                  <span className="text-amber-400 font-bold">•</span>
+                  <span>Confirm the door and frame dimensions against the actual opening</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold">✕</span>
-                  <span>Hardware sets, closer preps, and locksets frequently shipped uncoordinated</span>
+                  <span className="text-amber-400 font-bold">•</span>
+                  <span>Match hardware models and preparations to the selected assembly</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold">✕</span>
-                  <span>Site crews forced to mortise fire doors on-site, risking UL certification voiding</span>
+                  <span className="text-amber-400 font-bold">•</span>
+                  <span>Confirm permitted preparations with the manufacturer before modifications</span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold">✕</span>
-                  <span>Random bulk deliveries cause high-rise jobsite bottlenecks and damage</span>
+                  <span className="text-amber-400 font-bold">•</span>
+                  <span>Plan delivery, storage and building access with the site contact</span>
                 </li>
               </ul>
             </div>
@@ -95,19 +95,19 @@ export const WhyJustDoorsSection: React.FC<WhyJustDoorsSectionProps> = ({
               <ul className="space-y-3 text-xs text-neutral-200 font-mono">
                 <li className="flex items-start gap-2.5">
                   <span className="text-amber-400 font-bold">✓</span>
-                  <span><strong>100% Door Specialization:</strong> True mastery of NFPA 80 fire codes, STC acoustics & ADA</span>
+                  <span><strong>Door Project Focus:</strong> Door, frame and hardware requirements reviewed together</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-amber-400 font-bold">✓</span>
-                  <span><strong>Turnkey Hardware Schedules:</strong> Locksets, hinges, drop seals & closers pre-machined</span>
+                  <span><strong>Turnkey Hardware Schedules:</strong> Coordinate locksets, hinges, seals and closers with supplier preparations</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-amber-400 font-bold">✓</span>
-                  <span><strong>UL 10C Label Integrity:</strong> All mortises CNC machined in our UL-inspected factory</span>
+                  <span><strong>Manufacturer Documentation:</strong> Confirm listed ratings and permitted machining with the selected manufacturer</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-amber-400 font-bold">✓</span>
-                  <span><strong>Floor-by-Floor Crane Palletizing:</strong> Tagged by unit mark for rapid site offloading</span>
+                  <span><strong>Project Delivery Planning:</strong> Discuss opening labels, delivery sequence and access requirements</span>
                 </li>
               </ul>
             </div>
@@ -120,9 +120,9 @@ export const WhyJustDoorsSection: React.FC<WhyJustDoorsSectionProps> = ({
               <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-amber-400 font-bold font-mono">
                 01
               </div>
-              <h4 className="text-base font-bold text-white">Code Certified</h4>
+              <h4 className="text-base font-bold text-white">Project Requirements</h4>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                UL 10C positive pressure fire labels, ASTM E90 acoustic reports, and ADA barrier-free accessibility built into every opening schedule.
+                Identify specified fire, acoustic and accessibility requirements for review against product documentation and the project design.
               </p>
             </div>
 
@@ -130,9 +130,9 @@ export const WhyJustDoorsSection: React.FC<WhyJustDoorsSectionProps> = ({
               <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-amber-400 font-bold font-mono">
                 02
               </div>
-              <h4 className="text-base font-bold text-white">Factory Machined</h4>
+              <h4 className="text-base font-bold text-white">Supplier Preparations</h4>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                Automated CNC mortising for smart RFID locks, concealed closers, continuous hinges, and automatic acoustic drop sweeps.
+                Confirm hinge, lock, closer and seal preparations with the supplier before ordering.
               </p>
             </div>
 
@@ -142,7 +142,7 @@ export const WhyJustDoorsSection: React.FC<WhyJustDoorsSectionProps> = ({
               </div>
               <h4 className="text-base font-bold text-white">Rapid Takeoffs</h4>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                Send your PDF blueprints, Revit schedules, or Excel spreadsheets and receive formal line-item pricing within 24 to 48 hours.
+                Send drawings and opening schedules for scope review. Pricing and timing depend on the project information and supplier availability.
               </p>
             </div>
 
@@ -152,7 +152,7 @@ export const WhyJustDoorsSection: React.FC<WhyJustDoorsSectionProps> = ({
               </div>
               <h4 className="text-base font-bold text-white">Direct Logistics</h4>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                High-rise deliveries scheduled floor by floor, direct crane access coordination, and dedicated project manager oversight.
+                Coordinate delivery stages and access arrangements for the agreed project scope.
               </p>
             </div>
           </div>

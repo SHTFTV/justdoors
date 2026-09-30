@@ -178,13 +178,13 @@ export const HardwareCompatibilityChecker: React.FC<HardwareCompatibilityChecker
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider mb-2">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Backend Lookup & Code Rules Engine</span>
+            <span>Door schedule planning helper</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-display font-extrabold text-white">
             Hardware <span className="text-amber-400">Compatibility Checker</span>
           </h3>
           <p className="text-xs sm:text-sm text-neutral-400">
-            Validates locksets, hinges, and closers against door core material, fire ratings, and NFPA 80 / ULC-S104 standards.
+            Organize door and hardware selections for supplier review. This tool cannot certify fire ratings, product compatibility or code compliance.
           </p>
         </div>
 
@@ -194,19 +194,19 @@ export const HardwareCompatibilityChecker: React.FC<HardwareCompatibilityChecker
             {validation.status === 'compliant' && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-bold shadow-lg shadow-emerald-950/40">
                 <CheckCircle2 className="w-4 h-4" />
-                <span>100% Code Compliant</span>
+                <span>Review required</span>
               </div>
             )}
             {validation.status === 'warning' && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-mono text-xs font-bold shadow-lg shadow-amber-950/40">
                 <AlertTriangle className="w-4 h-4" />
-                <span>Requires Fire Liner / Special Prep</span>
+                <span>Project review required</span>
               </div>
             )}
             {validation.status === 'incompatible' && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-red-950/60 border border-red-500/40 text-red-400 font-mono text-xs font-bold shadow-lg shadow-red-950/40 animate-pulse">
                 <XCircle className="w-4 h-4" />
-                <span>Code Violation / Incompatible</span>
+                <span>Review required</span>
               </div>
             )}
           </div>
@@ -390,7 +390,7 @@ export const HardwareCompatibilityChecker: React.FC<HardwareCompatibilityChecker
                     {validation.ruleCode}
                   </span>
                   <span className="text-xs font-mono text-neutral-400">
-                    Tested: {validation.testedAssemblies}
+                    Review scope: {validation.testedAssemblies}
                   </span>
                 </div>
 
@@ -412,7 +412,7 @@ export const HardwareCompatibilityChecker: React.FC<HardwareCompatibilityChecker
                 {validation.recommendations.length > 0 && (
                   <div className="pt-2 border-t border-neutral-800/80">
                     <div className="text-[11px] font-mono uppercase text-amber-400 font-bold mb-1">
-                      Engineering Takeoff Recommendations:
+                      Next review steps:
                     </div>
                     {validation.recommendations.map((rec, idx) => (
                       <div key={idx} className="text-xs flex items-start gap-2 text-neutral-200">

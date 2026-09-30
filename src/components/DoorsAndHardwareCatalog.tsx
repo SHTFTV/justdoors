@@ -449,13 +449,7 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
                       <td className="p-4 sm:p-5 align-top">
                         <div className="flex items-center gap-3">
                           <div className="h-10 w-24 bg-neutral-950 rounded-lg p-1.5 border border-neutral-800 flex items-center justify-center shrink-0">
-                            <img 
-                              src={mfg.logoUrl} 
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                              alt={mfg.altText} 
-                              className="max-h-6 max-w-[80px] object-contain filter brightness-125"
-                              referrerPolicy="no-referrer"
-                            />
+                            <span className="text-[10px] font-bold text-neutral-300 text-center">{mfg.name}</span>
                           </div>
                           <div>
                             <div className="text-sm font-bold text-white font-display">{mfg.name}</div>
@@ -519,13 +513,7 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
                       <td className="p-4 sm:p-5 align-top">
                         <div className="flex items-center gap-3">
                           <div className="h-10 w-24 bg-neutral-950 rounded-lg p-1.5 border border-neutral-800 flex items-center justify-center shrink-0">
-                            <img 
-                              src={mfg.logoUrl} 
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                              alt={mfg.altText} 
-                              className="max-h-6 max-w-[80px] object-contain filter brightness-125"
-                              referrerPolicy="no-referrer"
-                            />
+                            <span className="text-[10px] font-bold text-neutral-300 text-center">{mfg.name}</span>
                           </div>
                           <div>
                             <div className="text-sm font-bold text-white font-display">{mfg.name}</div>
@@ -563,7 +551,7 @@ export const DoorsAndHardwareCatalog: React.FC<DoorsAndHardwareCatalogProps> = (
                 <span>Single-Source Complete Door + Lockset + Closer Packages</span>
               </h4>
               <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl">
-                Avoid coordination headaches between framers, hollow metal suppliers, and hardware vendors. We factory-prep hinges, mortise pockets, and electric strikes for zero site rework.
+                Avoid coordination headaches between framers, hollow metal suppliers, and hardware vendors. We coordinate hinge, lock and electric-strike preparations with the selected supplier. Confirm dimensions and manufacturer requirements before ordering.
               </p>
             </div>
             <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto">

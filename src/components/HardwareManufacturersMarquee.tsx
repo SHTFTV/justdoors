@@ -241,13 +241,7 @@ export const HardwareManufacturersMarquee: React.FC<HardwareManufacturersMarquee
                           </h4>
                         </div>
                         <div className="h-9 w-24 bg-neutral-900 rounded-lg p-1 border border-neutral-800 flex items-center justify-center shrink-0">
-                          <img 
-                            src={mfg.logoUrl} 
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                            alt={mfg.altText} 
-                            className="max-h-6 max-w-[80px] object-contain filter brightness-125"
-                            referrerPolicy="no-referrer"
-                          />
+                          <span className="text-[10px] font-bold text-neutral-300 text-center">{mfg.name}</span>
                         </div>
                       </div>
 
@@ -342,13 +336,7 @@ export const HardwareManufacturersMarquee: React.FC<HardwareManufacturersMarquee
 
             <div className="flex items-center gap-3">
               <div className="h-12 w-28 bg-neutral-950 rounded-xl p-2 border border-neutral-800 flex items-center justify-center shrink-0">
-                <img 
-                  src={selectedManufacturer.logoUrl} 
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                  alt={selectedManufacturer.altText} 
-                  className="max-h-8 max-w-[95px] object-contain filter brightness-125"
-                  referrerPolicy="no-referrer"
-                />
+                <span className="text-[10px] font-bold text-neutral-300 text-center">{selectedManufacturer.name}</span>
               </div>
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400">

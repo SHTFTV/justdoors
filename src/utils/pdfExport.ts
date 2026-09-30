@@ -181,7 +181,7 @@ export const generateDoorSchedulePDF = (options: PDFExportOptions): void => {
 
       // Left Footer
       doc.text(
-        'NFPA 80 / UL 10C / IBC 2024 Compliant • All Openings Factory Machined & Prepped for Hardware',
+        'Planning schedule only — manufacturer listings and project approval required',
         14,
         pageHeight - 8
       );

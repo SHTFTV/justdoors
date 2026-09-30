@@ -29,7 +29,7 @@ export const AIDoorAssistant: React.FC<AIDoorAssistantProps> = ({
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string }>>([
     {
       role: 'assistant',
-      content: `Hello! I am your **Just Doors Architectural Specification & Code Consultant**. \n\nAsk me any question regarding **UL 10C fire ratings, STC acoustic thresholds, high-rise suite entry hardware schedules, or hollow metal vs wood core assemblies**. \n\n*What project requirements are you specifying today?*`,
+      content: `This is the **Just Doors project planning helper**. \n\nCollect your opening details and send them to the project contact for review. This helper does not certify an assembly or provide project-specific code approval. \n\n*What project requirements are you specifying today?*`,
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -92,15 +92,15 @@ export const AIDoorAssistant: React.FC<AIDoorAssistantProps> = ({
         <div className="text-center space-y-4 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>AI Code & Specification Assistant</span>
+            <span>Door Project Planning Helper</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-            Ask Our Architectural Door Consultant
+            Prepare Your Door Project
           </h2>
 
           <p className="text-sm sm:text-base text-neutral-400 max-w-2xl mx-auto">
-            Need clarity on fire ratings (20/45/90-min), acoustic STC drop sweeps, panic egress compliance, or high-rise door schedules? Get instant code-backed answers.
+            Need clarity on fire ratings (20/45/90-min), acoustic STC drop sweeps, panic egress compliance, or high-rise door schedules? Use the general checklist to prepare for a project review.
           </p>
         </div>
 
@@ -115,13 +115,13 @@ export const AIDoorAssistant: React.FC<AIDoorAssistantProps> = ({
               </div>
               <div>
                 <div className="text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>Just Doors Spec Engine</span>
+                  <span>Just Doors Planning Helper</span>
                   <span className="text-[9px] bg-emerald-950 border border-emerald-800 text-emerald-300 px-1.5 py-0.2 rounded font-mono">
                     ONLINE
                   </span>
                 </div>
                 <div className="text-[11px] text-neutral-400">
-                  NFPA 80 • UL 10C • IBC 2024 • ADA Standard
+                  General planning information — project approval required
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@ export const AIDoorAssistant: React.FC<AIDoorAssistantProps> = ({
                 <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center animate-spin">
                   <RefreshCw className="w-4 h-4" />
                 </div>
-                <span>Consulting architectural door codes & hardware guidelines...</span>
+                <span>Preparing the project checklist...</span>
               </div>
             )}
           </div>

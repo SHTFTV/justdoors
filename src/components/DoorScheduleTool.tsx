@@ -61,8 +61,8 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
       lockset: 'Grade 1 Heavy Duty Mortise (Schlage L9000)',
       hinges: '4.5"x4.5" Steel Ball-Bearing Hinges (UL 10C)',
       closer: 'Concealed In-Door Overhead Closer',
-      compatibilityStatus: 'compliant',
-      compatibilityFeedback: 'UL 10C Positive Pressure Compliant (Positive Latching & Ball-Bearing Hinges Verified)',
+      compatibilityStatus: 'warning',
+      compatibilityFeedback: 'Example opening — project and manufacturer review required',
       acousticReq: 'STC 38 Required',
       qty: 240,
     },
@@ -79,8 +79,8 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
       lockset: 'Von Duprin 98/99 Series Panic Exit Crash Bar',
       hinges: 'Heavy-Duty 4.5"x4.5" Steel Ball-Bearing Hinges (UL 10C)',
       closer: 'LCN 4040XP Heavy Duty Cast Closer',
-      compatibilityStatus: 'compliant',
-      compatibilityFeedback: 'NFPA 101 Life Safety & NFPA 80 90-Min Egress Approved',
+      compatibilityStatus: 'warning',
+      compatibilityFeedback: 'Example opening — project and manufacturer review required',
       acousticReq: 'Standard',
       qty: 30,
     },
@@ -98,7 +98,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
       hinges: 'UL-Listed Spring Loaded Self-Closing Fire Hinges',
       closer: 'Spring Hinges Self-Closing',
       compatibilityStatus: 'warning',
-      compatibilityFeedback: 'Spring-loaded hinges on heavy 3-Hour steel doors can struggle with latch reliability. Hydraulic closer recommended.',
+      compatibilityFeedback: 'Example opening — project and manufacturer review required',
       acousticReq: 'Standard',
       qty: 12,
     },
@@ -184,7 +184,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
     if (spec.location && !newOpening) {
       setNewOpening(spec.location);
     }
-    success('Hardware Spec Applied', `Transferred validated spec to line-item builder: ${validation.summary}`);
+    success('Hardware Spec Applied', `Transferred planning selections to line-item builder: ${validation.summary}`);
   };
 
   // Run full schedule batch validation
@@ -232,9 +232,9 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
         if (data.incompatibleCount > 0) {
           error('Schedule Audit Completed', `Found ${data.incompatibleCount} code violations and ${data.warningCount} warnings across ${data.totalAudited} door types.`);
         } else if (data.warningCount > 0) {
-          info('Schedule Audit Completed', `${data.compliantCount} compliant openings, with ${data.warningCount} items requiring special fire liners.`);
+          info('Schedule Audit Completed', `${data.compliantCount} approved openings, with ${data.warningCount} items requiring project review.`);
         } else {
-          success('All Openings 100% Code Compliant', `All ${data.totalAudited} scheduled door types passed NFPA 80 / ULC-S104 rules.`);
+          success('All Openings Review required', `All ${data.totalAudited} scheduled door types require confirmation by the project professional and supplier.`);
         }
       } else {
         const badCount = clientAuditedItems.filter(i => i.compatibilityStatus === 'incompatible').length;
@@ -242,9 +242,9 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
         if (badCount > 0) {
           error('Schedule Audit Completed', `Found ${badCount} code violations across schedule.`);
         } else if (warnCount > 0) {
-          info('Schedule Audit Completed', `${warnCount} items require special intumescent liners.`);
+          info('Schedule Audit Completed', `${warnCount} items require project review.`);
         } else {
-          success('All Openings 100% Code Compliant', 'All scheduled door types passed NFPA 80 / ULC-S104 rules.');
+          success('All Openings Review required', 'All scheduled door types require confirmation by the project professional and supplier.');
         }
       }
     } catch (err) {
@@ -269,43 +269,11 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
     if (lineValidationResult.suggestedFireRating) {
       setNewFireRating(lineValidationResult.suggestedFireRating);
     }
-    success('Hardware Mismatch Resolved', 'Applied compliant lockset & hinge specifications.');
+    success('Hardware Mismatch Resolved', 'Updated planning selections; project approval is still required.');
   };
 
-  const handleAutoFixRow = (itemId: string) => {
-    setScheduleItems((prev) =>
-      prev.map((item) => {
-        if (item.id !== itemId) return item;
-        const check = validateHardwareCompatibility({
-          doorType: item.doorType,
-          fireRating: item.fireRating,
-          lockset: item.lockset || item.hardwareSet,
-          hinges: item.hinges || item.hardwareSet,
-          frameType: item.frameType,
-        });
-
-        const fixedLockset = check.suggestedLockset || item.lockset || 'Grade 1 Heavy Duty Mortise (Schlage L9000 / ASSA ABLOY)';
-        const fixedHinges = check.suggestedHinges || item.hinges || 'Heavy-Duty 4.5"x4.5" Steel Ball-Bearing Hinges (UL 10C)';
-
-        const fixedCheck = validateHardwareCompatibility({
-          doorType: item.doorType,
-          fireRating: item.fireRating,
-          lockset: fixedLockset,
-          hinges: fixedHinges,
-          frameType: item.frameType,
-        });
-
-        return {
-          ...item,
-          lockset: fixedLockset,
-          hinges: fixedHinges,
-          hardwareSet: `${fixedLockset.split('(')[0].trim()} • ${fixedHinges.split('(')[0].trim()}`,
-          compatibilityStatus: fixedCheck.status,
-          compatibilityFeedback: fixedCheck.summary,
-        };
-      })
-    );
-    success('Opening Corrected', 'Hardware set updated to meet NFPA 80 / ULC fire code standards.');
+  const handleAutoFixRow = (_itemId: string) => {
+    info('Project review required', 'Contact the project professional and supplier with this opening schedule. This tool does not automatically approve or change hardware.');
   };
 
   const handleAddItem = (e: React.FormEvent) => {
@@ -324,8 +292,8 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
       hardwareSet: `${newLockset.split('(')[0].trim()} • ${newHinges.split('(')[0].trim()}`,
       lockset: newLockset,
       hinges: newHinges,
-      compatibilityStatus: lineValidationResult ? lineValidationResult.status : 'compliant',
-      compatibilityFeedback: lineValidationResult ? lineValidationResult.summary : 'Hardware Compatibility Verified',
+      compatibilityStatus: lineValidationResult ? lineValidationResult.status : 'warning',
+      compatibilityFeedback: lineValidationResult ? lineValidationResult.summary : 'Project review required',
       qty: Number(newQty) || 1,
     };
 
@@ -398,7 +366,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
       `"${item.fireRating}"`,
       `"${item.frameType}"`,
       `"${item.hardwareSet}"`,
-      `"${item.compatibilityStatus || 'Compliant'}"`,
+      `"${item.compatibilityStatus || 'Review required'}"`,
       item.qty
     ]);
 
@@ -606,7 +574,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                 <div className="flex justify-between">
                   <span>Hardware Validation Status:</span>
                   <span className="text-emerald-400 font-semibold font-mono">
-                    {scheduleItems.filter(i => i.compatibilityStatus === 'compliant').length} / {scheduleItems.length} Verified
+                    {scheduleItems.filter(i => i.compatibilityStatus === 'compliant').length} / {scheduleItems.length} reviewed
                   </span>
                 </div>
               </div>
@@ -631,7 +599,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                   title="Audit full schedule against NFPA 80 / ULC-S104 rules engine"
                 >
                   <RefreshCw className={`w-3.5 h-3.5 text-amber-400 ${isAuditing ? 'animate-spin' : ''}`} />
-                  <span>{isAuditing ? 'Auditing Schedule...' : 'Audit Full Schedule Code Rules'}</span>
+                  <span>{isAuditing ? 'Reviewing Schedule...' : 'Review Full Schedule'}</span>
                 </button>
               </div>
             </div>
@@ -646,7 +614,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                     <th className="py-3 px-3">Fire Rating</th>
                     <th className="py-3 px-3">Frame</th>
                     <th className="py-3 px-3">Hardware Set</th>
-                    <th className="py-3 px-3 text-center">Code Check</th>
+                    <th className="py-3 px-3 text-center">Review</th>
                     <th className="py-3 px-3 text-right">Qty</th>
                     <th className="py-3 px-3 text-center">Action</th>
                   </tr>
@@ -688,7 +656,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                               <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                             )}
                             <span>
-                              {item.compatibilityStatus === 'incompatible' ? 'Violation' : item.compatibilityStatus === 'warning' ? 'Check Liner' : 'Compliant'}
+                              {item.compatibilityStatus === 'incompatible' ? 'Violation' : item.compatibilityStatus === 'warning' ? 'Review required' : 'Review required'}
                             </span>
                           </button>
 
@@ -697,10 +665,10 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                               type="button"
                               onClick={() => handleAutoFixRow(item.id)}
                               className="px-1.5 py-1 rounded bg-amber-500 hover:bg-amber-400 text-neutral-950 font-mono text-[9px] font-bold inline-flex items-center gap-0.5 shadow transition-all hover:scale-105"
-                              title="Auto-fix opening hardware to meet NFPA 80 compliant specification"
+                              title="Review this opening with your project professional"
                             >
                               <Zap className="w-2.5 h-2.5" />
-                              <span>Fix</span>
+                              <span>Review</span>
                             </button>
                           )}
                         </div>
@@ -979,7 +947,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                         )}
                         {lineValidationResult.status === 'warning' && (
                           <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wide">
-                            Special Fabrication / Intumescent Lining Required
+                            Project Review Required
                           </span>
                         )}
                       </div>
@@ -992,7 +960,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                           className="px-3 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold font-mono text-[11px] flex items-center gap-1.5 shadow-md transition-transform hover:scale-105 active:scale-95"
                         >
                           <Zap className="w-3.5 h-3.5 fill-current" />
-                          <span>⚡ Apply Suggested Fix</span>
+                          <span>Review with Supplier</span>
                         </button>
                       )}
                     </div>
@@ -1010,7 +978,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                     {lineValidationResult.recommendations.length > 0 && (
                       <div className="pt-1 flex flex-wrap items-center justify-between gap-2 border-t border-white/5">
                         <div className="flex items-start gap-1.5 text-[11px] font-mono text-neutral-200">
-                          <span className="text-amber-400 font-bold shrink-0">Suggested Fix:</span>
+                          <span className="text-amber-400 font-bold shrink-0">Next step:</span>
                           <span>{lineValidationResult.recommendations[0]}</span>
                         </div>
                       </div>
@@ -1156,7 +1124,7 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
             {selectedAuditItem.compatibilityFeedback && (
               <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-neutral-200 space-y-1">
                 <div className="font-bold text-amber-400 uppercase font-mono text-[11px]">
-                  Takeoff Engineering Assessment:
+                  Planning Review:
                 </div>
                 <p className="leading-relaxed">{selectedAuditItem.compatibilityFeedback}</p>
               </div>
@@ -1173,12 +1141,12 @@ export const DoorScheduleTool: React.FC<DoorScheduleToolProps> = ({
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold font-mono text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
                 >
                   <Zap className="w-4 h-4 fill-current" />
-                  <span>⚡ Apply Compliant Hardware Fix</span>
+                  <span>⚡ Review Hardware Selections</span>
                 </button>
               ) : (
                 <div className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Hardware specification verified compliant</span>
+                  <span>Hardware specification requires project review</span>
                 </div>
               )}
 

@@ -151,7 +151,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 Request a Project Quote
               </h3>
               <p className="text-xs sm:text-sm text-neutral-400">
-                Direct factory pricing on fire doors, hollow metal, architectural wood, hardware packages, and complete high-rise door schedules.
+                Project pricing for fire doors, hollow metal, architectural wood, hardware packages, and complete high-rise door schedules.
               </p>
             </div>
 
