@@ -4,6 +4,8 @@ from pathlib import Path
 import markdown
 ROOT=Path(__file__).resolve().parents[1]
 SITE='https://www.justdoors.co'
+widget=(ROOT/'scripts/_widget.html').read_text()
+city_links='<nav aria-label="Service cities"><h2>Door and wall projects in your city</h2><p>'+ ' · '.join('<a href="/'+f.stem+'">'+html.escape(f.stem.replace('-', ' ').title())+'</a>' for f in sorted((ROOT/'content/cities').glob('*.md')))+'</p></nav>'
 template=(ROOT/'scripts/_template.html').read_text()
 # Reuse the site's typography and navigation without city-specific sections.
 head=template.split('<body>')[0]
@@ -19,7 +21,7 @@ def visual(slug,title):
  return '<figure class="steel-example"><img src="/images/'+slug+'-planning.svg" width="960" height="300" alt="Planning steps for '+html.escape(title)+'"/><figcaption class="steel-copy">'+html.escape(title)+': organize the information shown before confirming a project scope. <small>Source: original Just Doors planning diagram; not an installation detail.</small></figcaption></figure>'
 
 def page(title,desc,url,body,schema):
- return head.replace('__TITLE__',html.escape(title)).replace('__DESC__',html.escape(desc)).replace('__URL__',url).replace('__SCHEMA__',json.dumps(schema).replace('<','\\u003c'))+'<body>'+nav+'<main class="wrap">'+body+'</main></body></html>'
+ return head.replace('__TITLE__',html.escape(title)).replace('__DESC__',html.escape(desc)).replace('__URL__',url).replace('__SCHEMA__',json.dumps(schema).replace('<','\\u003c'))+'<body>'+nav+'<main class="wrap">'+body+city_links+'</main>'+widget+'</body></html>'
 
 out=ROOT/'public/guides';out.mkdir(exist_ok=True)
 for p in posts:

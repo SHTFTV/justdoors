@@ -2,6 +2,14 @@ from pathlib import Path
 from html import escape
 ROOT=Path(__file__).resolve().parents[1]
 DIAGRAMS={
+'front-entry-door-replacement':['Entry + exposure', 'Door + frame package', 'Finish + installation'],
+'back-service-door-replacement':['Access + exposure', 'Frame + hardware', 'Secure handover'],
+'sliding-glass-patio-door-replacement':['Panels + track', 'Opening + access', 'Replacement scope'],
+'interior-door-replacement':['Room + opening list', 'Leaf + jamb + trim', 'Hardware + finish'],
+'new-build-door-outfitting':['Plans + opening IDs', 'Coordinated schedule', 'Phased delivery'],
+'move-wall-create-door-opening':['Existing wall + plans', 'Design + scope review', 'Opening + finishes'],
+'emergency-hoarding-temporary-enclosures':['Area + damage', 'Temporary separation', 'Access + removal'],
+
 'project':['Opening','Door + frame','Hardware + installation'],
 'door-schedule-quote-checklist':['Opening ID + size','Door + frame schedule','Hardware + scope'],
 'replace-door-or-door-and-frame':['Existing opening','Frame condition','Leaf or complete set'],

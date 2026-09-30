@@ -1,6 +1,6 @@
-# Emergency Door & Window Board-Up — Lower Mainland, BC
+# 24-Hour Emergency Calls: Door & Window Board-Up — Lower Mainland, BC
 
-**Just Doors coordinates temporary board-up work for damaged exterior doors, sidelights, storefront panels and windows across the Lower Mainland. Call or text Rambo Wall & Ceiling at 778-773-2790 and send the address, safe photographs and approximate opening dimensions when available.**
+**Just Doors coordinates temporary board-up work for damaged exterior doors, sidelights, storefront panels and windows across the Lower Mainland. For 24-hour emergency calls, contact Rambo Wall & Ceiling at 778-773-2790 and send the address, safe photographs and approximate opening dimensions when available.**
 
 ## When temporary board-up may be appropriate
 
@@ -26,7 +26,7 @@ Boarding does not restore a door or window assembly's original fire, acoustic, s
 
 ## Lower Mainland coordination
 
-Requests can be reviewed for Vancouver, Burnaby, Richmond, Surrey, Delta, White Rock, New Westminster, the Tri-Cities, the North Shore, Langley, Maple Ridge, Pitt Meadows, Abbotsford, Mission and Chilliwack. Availability and response timing are confirmed for the specific address; this page does not promise 24-hour coverage or a guaranteed arrival time.
+Requests can be reviewed for Vancouver, Burnaby, Richmond, Surrey, Delta, White Rock, New Westminster, the Tri-Cities, the North Shore, Langley, Maple Ridge, Pitt Meadows, Abbotsford, Mission and Chilliwack. Emergency calls are accepted 24 hours a day. Dispatch availability and arrival timing are confirmed for the specific address.
 
 ## Request emergency board-up coordination
 
